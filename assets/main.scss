@@ -5,43 +5,53 @@
 
 /* =========================================================
    Subterranean District
-   Dark Editorial System
-   Palette: Cobalt Blue + Burgundy
-   Goal: Background blend that feels cinematic, not loud
+   Editorial Atmosphere
+   Palette: Cobalt Blue × Burgundy (NO black base)
 ========================================================= */
 
 :root {
-  --bg: #07080b;
-  --bg-2: #0b0d14;
+  /* ink */
+  --ink: #efece6;
+  --ink-2: rgba(239, 236, 230, 0.78);
+  --ink-3: rgba(239, 236, 230, 0.55);
 
-  --ink: #e9e5df;
-  --ink-2: rgba(233, 229, 223, 0.78);
-  --ink-3: rgba(233, 229, 223, 0.55);
-
-  /* accents */
+  /* colors */
   --cobalt: #2f66ff;
   --burgundy: #7a1b2d;
 
-  --line: rgba(233, 229, 223, 0.12);
-  --line-2: rgba(233, 229, 223, 0.18);
+  --line: rgba(239, 236, 230, 0.14);
 }
 
 /* =========================================================
-   Background blend (the main change)
+   Background — true color blend (no black)
 ========================================================= */
 
 html,
 body {
-  /* true site-wide cobalt x burgundy blend */
   background:
-    radial-gradient(1100px 700px at 16% 18%, rgba(47,102,255,0.18), transparent 62%),
-    radial-gradient(1000px 760px at 78% 22%, rgba(122,27,45,0.18), transparent 60%),
-    linear-gradient(135deg, #07080b 0%, #070810 38%, #0a0b12 62%, #07080b 100%);
-  background-color: var(--bg);
+    radial-gradient(
+      1200px 800px at 12% 18%,
+      rgba(47,102,255,0.35),
+      rgba(47,102,255,0.18) 40%,
+      transparent 65%
+    ),
+    radial-gradient(
+      1100px 900px at 82% 22%,
+      rgba(122,27,45,0.35),
+      rgba(122,27,45,0.18) 42%,
+      transparent 68%
+    ),
+    linear-gradient(
+      135deg,
+      #1a1e2b 0%,
+      #1c1f30 35%,
+      #261a22 65%,
+      #2a1b22 100%
+    );
 }
 
 /* =========================================================
-   Base atmosphere
+   Base typography
 ========================================================= */
 
 body {
@@ -52,32 +62,29 @@ body {
   letter-spacing: 0.01em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Cinematic texture (subtle, non-distracting) */
+/* Gentle film texture (very subtle) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background:
-    /* soft vignette */
-    radial-gradient(1200px 900px at 50% 30%, rgba(0,0,0,0.0), rgba(0,0,0,0.55)),
-    /* minimal scan texture */
+    radial-gradient(1200px 900px at 50% 40%, rgba(255,255,255,0.05), transparent 70%),
     repeating-linear-gradient(
       0deg,
       rgba(255,255,255,0.012),
       rgba(255,255,255,0.012) 1px,
       transparent 1px,
-      transparent 4px
+      transparent 5px
     );
-  opacity: 0.38;
+  opacity: 0.25;
   mix-blend-mode: overlay;
 }
 
 /* =========================================================
-   Layout cleanup
+   Layout
 ========================================================= */
 
 .site-header,
@@ -107,12 +114,11 @@ body::before {
 
 .site-header {
   border: none;
-  padding-top: 10px;
-  padding-bottom: 12px;
+  padding-top: 12px;
+  padding-bottom: 14px;
   position: relative;
 }
 
-/* subtle cobalt → burgundy rule */
 .site-header::after {
   content: "";
   display: block;
@@ -121,8 +127,8 @@ body::before {
   background: linear-gradient(
     90deg,
     rgba(47,102,255,0),
-    rgba(47,102,255,0.30),
-    rgba(122,27,45,0.30),
+    rgba(47,102,255,0.45),
+    rgba(122,27,45,0.45),
     rgba(122,27,45,0)
   );
 }
@@ -130,7 +136,7 @@ body::before {
 .site-title,
 .site-title:visited {
   color: var(--ink);
-  letter-spacing: 0.10em;
+  letter-spacing: 0.11em;
   text-transform: lowercase;
   font-weight: 400;
   border: none;
@@ -138,7 +144,7 @@ body::before {
 
 .site-nav .page-link,
 .site-nav .page-link:visited {
-  color: rgba(233,229,223,0.72);
+  color: var(--ink-2);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 11px;
@@ -151,34 +157,33 @@ body::before {
 }
 
 /* =========================================================
-   Links — FULL override (no visited blue/purple)
+   Links — unified, no blue/purple visited states
 ========================================================= */
 
 a,
 a:visited {
-  color: rgba(233,229,223,0.88);
+  color: var(--ink-2);
   text-decoration: none;
-  border-bottom: 1px solid rgba(233,229,223,0.22);
+  border-bottom: 1px solid rgba(239,236,230,0.28);
 }
 
 a:hover,
 a:focus {
   color: #ffffff;
-  border-bottom-color: rgba(47,102,255,0.70);
+  border-bottom-color: rgba(47,102,255,0.75);
 }
 
 a:active {
-  color: #ffffff;
-  border-bottom-color: rgba(122,27,45,0.70);
+  border-bottom-color: rgba(122,27,45,0.75);
 }
 
 /* =========================================================
-   Typography
+   Typography hierarchy
 ========================================================= */
 
 .page-title,
 .post-title {
-  color: #f4f0ea;
+  color: #ffffff;
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.12;
@@ -191,7 +196,7 @@ a:active {
 .post-meta {
   color: var(--ink-3);
   font-size: 12px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
@@ -200,14 +205,14 @@ p {
 }
 
 h2 {
-  color: #f4f0ea;
+  color: #ffffff;
   font-weight: 400;
   margin-top: 46px;
   margin-bottom: 14px;
 }
 
 h3 {
-  color: rgba(244,240,234,0.92);
+  color: rgba(255,255,255,0.92);
   font-weight: 400;
   margin-top: 34px;
   margin-bottom: 10px;
@@ -218,7 +223,7 @@ h3 {
 ========================================================= */
 
 .sd-hero {
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 .sd-kicker {
@@ -232,11 +237,11 @@ h3 {
 .sd-tagline {
   font-size: 20px;
   color: var(--ink-2);
-  max-width: 54ch;
+  max-width: 56ch;
 }
 
 /* =========================================================
-   Buttons (Manifesto / Archive / About)
+   Buttons
 ========================================================= */
 
 .sd-links {
@@ -249,11 +254,11 @@ h3 {
 .sd-link,
 .sd-link:visited {
   display: inline-block;
-  padding: 10px 12px;
+  padding: 10px 14px;
   border-radius: 14px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(233,229,223,0.12);
-  color: rgba(233,229,223,0.88);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(239,236,230,0.18);
+  color: var(--ink);
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-size: 11px;
@@ -263,36 +268,28 @@ h3 {
 .sd-link:hover,
 .sd-link:focus {
   color: #ffffff;
-  border-color: rgba(47,102,255,0.55);
-  box-shadow: 0 0 0 3px rgba(47,102,255,0.12);
+  border-color: rgba(47,102,255,0.65);
+  box-shadow: 0 0 0 3px rgba(47,102,255,0.18);
 }
 
 .sd-link:active {
-  border-color: rgba(122,27,45,0.70);
-  box-shadow: 0 0 0 3px rgba(122,27,45,0.12);
+  border-color: rgba(122,27,45,0.65);
+  box-shadow: 0 0 0 3px rgba(122,27,45,0.18);
 }
 
 /* primary (burgundy) */
 .sd-link--primary,
 .sd-link--primary:visited {
-  border-color: rgba(122,27,45,0.55);
+  border-color: rgba(122,27,45,0.65);
 }
 
-.sd-link--primary:hover,
-.sd-link--primary:focus {
-  border-color: rgba(122,27,45,0.85);
-  box-shadow: 0 0 0 3px rgba(122,27,45,0.14);
+.sd-link--primary:hover {
+  box-shadow: 0 0 0 3px rgba(122,27,45,0.22);
 }
 
 /* =========================================================
    Archive
 ========================================================= */
-
-.sd-archive-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
 
 .sd-archive-item {
   padding: 14px 0;
@@ -308,7 +305,6 @@ h3 {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 11px;
-  margin-right: 10px;
 }
 
 /* =========================================================
@@ -317,10 +313,10 @@ h3 {
 
 .site-footer {
   border: none;
-  color: rgba(233,229,223,0.45);
+  color: var(--ink-3);
 }
 
 .site-footer a {
-  color: rgba(233,229,223,0.65);
-  border-bottom: 1px solid rgba(233,229,223,0.18);
+  color: var(--ink-2);
+  border-bottom: 1px solid rgba(239,236,230,0.28);
 }
