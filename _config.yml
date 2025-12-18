@@ -3,3 +3,8 @@ description: The district beneath the surface.
 theme: minima
 markdown: kramdown
 permalink: /:categories/:title/
+
+header_pages:
+  - manifesto.md
+  - archive.md
+  - about.md
