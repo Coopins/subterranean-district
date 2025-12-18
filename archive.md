@@ -1,11 +1,18 @@
 ---
 layout: page
 title: Archive
+permalink: /archive/
 ---
 
-A growing record of stories, images, and observations from beneath the surface.
+<p class="sd-archive-intro">
+  A growing record of stories, images, and observations from beneath the surface.
+</p>
 
-{% for post in site.posts %}
-- **{{ post.date | date: "%Y" }}** — [{{ post.title }}]({{ post.url }})
-{% endfor %}
-
+<ul class="sd-archive-list">
+  {% for post in site.posts %}
+    <li class="sd-archive-item">
+      <span class="sd-archive-year">{{ post.date | date: "%Y" }}</span>
+      <span class="sd-archive-title"><a href="{{ post.url }}">{{ post.title }}</a></span>
+    </li>
+  {% endfor %}
+</ul>
