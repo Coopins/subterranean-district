@@ -5,8 +5,8 @@
 
 /* =========================================================
    Subterranean District
-   Editorial Atmosphere
-   Palette: Cobalt Blue × Burgundy (NO black base)
+   Editorial Atmosphere (Flatter + Slightly More Blue)
+   Palette: Cobalt Blue × Burgundy (no pure black base)
 ========================================================= */
 
 :root {
@@ -23,30 +23,33 @@
 }
 
 /* =========================================================
-   Background — true color blend (no black)
+   Background — Flatter blend (less vignette) + more cobalt
 ========================================================= */
 
 html,
 body {
   background:
+    /* cobalt field (stronger, wider, flatter) */
     radial-gradient(
-      1200px 800px at 12% 18%,
-      rgba(47,102,255,0.35),
-      rgba(47,102,255,0.18) 40%,
-      transparent 65%
+      1400px 900px at 14% 18%,
+      rgba(47,102,255,0.38),
+      rgba(47,102,255,0.20) 44%,
+      transparent 72%
     ),
+    /* burgundy field (balanced, not overpowering) */
     radial-gradient(
-      1100px 900px at 82% 22%,
-      rgba(122,27,45,0.35),
-      rgba(122,27,45,0.18) 42%,
-      transparent 68%
+      1300px 980px at 86% 20%,
+      rgba(122,27,45,0.30),
+      rgba(122,27,45,0.16) 46%,
+      transparent 74%
     ),
+    /* base paper-ink blend (no black; deep indigo/wine neutrals) */
     linear-gradient(
       135deg,
-      #1a1e2b 0%,
-      #1c1f30 35%,
-      #261a22 65%,
-      #2a1b22 100%
+      #20263a 0%,
+      #1f263b 34%,
+      #2a1e2b 68%,
+      #2b1f2b 100%
     );
 }
 
@@ -64,22 +67,28 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Gentle film texture (very subtle) */
+/* Flatter texture: remove heavy vignette, keep subtle film grain */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(1200px 900px at 50% 40%, rgba(255,255,255,0.05), transparent 70%),
+    /* very subtle lift so the center reads like paper */
+    radial-gradient(
+      1200px 900px at 50% 38%,
+      rgba(255,255,255,0.045),
+      transparent 72%
+    ),
+    /* minimal scan texture */
     repeating-linear-gradient(
       0deg,
-      rgba(255,255,255,0.012),
-      rgba(255,255,255,0.012) 1px,
+      rgba(255,255,255,0.010),
+      rgba(255,255,255,0.010) 1px,
       transparent 1px,
-      transparent 5px
+      transparent 6px
     );
-  opacity: 0.25;
+  opacity: 0.22;
   mix-blend-mode: overlay;
 }
 
@@ -119,6 +128,7 @@ body::before {
   position: relative;
 }
 
+/* subtle cobalt → burgundy rule */
 .site-header::after {
   content: "";
   display: block;
@@ -127,8 +137,8 @@ body::before {
   background: linear-gradient(
     90deg,
     rgba(47,102,255,0),
-    rgba(47,102,255,0.45),
-    rgba(122,27,45,0.45),
+    rgba(47,102,255,0.48),
+    rgba(122,27,45,0.40),
     rgba(122,27,45,0)
   );
 }
@@ -157,7 +167,7 @@ body::before {
 }
 
 /* =========================================================
-   Links — unified, no blue/purple visited states
+   Links — unified, no visited blue/purple
 ========================================================= */
 
 a,
@@ -170,11 +180,11 @@ a:visited {
 a:hover,
 a:focus {
   color: #ffffff;
-  border-bottom-color: rgba(47,102,255,0.75);
+  border-bottom-color: rgba(47,102,255,0.78);
 }
 
 a:active {
-  border-bottom-color: rgba(122,27,45,0.75);
+  border-bottom-color: rgba(122,27,45,0.78);
 }
 
 /* =========================================================
