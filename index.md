@@ -1,4 +1,3 @@
-<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -81,8 +80,13 @@
 
       /* Header */
       header {
-        position: relative;
-        padding: 22px 0 10px;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        padding: 18px 0 10px;
+        backdrop-filter: blur(10px);
+        background: linear-gradient(to bottom, rgba(20,26,69,0.72), rgba(20,26,69,0.16));
+        border-bottom: 1px solid rgba(244,244,250,0.10);
       }
 
       .nav {
@@ -99,6 +103,7 @@
         text-transform: lowercase;
         font-size: 20px;
         color: rgba(244, 244, 250, 0.9);
+        white-space: nowrap;
       }
 
       nav ul {
@@ -129,26 +134,26 @@
 
       /* Thin accent line (subtle) */
       .accent-line {
-        margin-top: 18px;
+        margin-top: 14px;
         height: 1px;
         width: 100%;
         background: linear-gradient(
           to right,
           rgba(244,244,250,0.00),
-          rgba(160,60,110,0.28),
+          rgba(160,60,110,0.26),
           rgba(244,244,250,0.00)
         );
         opacity: 0.6;
       }
 
-      /* Main / Hero (layout like your screenshot) */
+      /* Main / Hero */
       main {
-        padding: clamp(40px, 6vw, 78px) 0 56px;
+        padding: clamp(42px, 6vw, 86px) 0 40px;
       }
 
       .hero {
-        padding-top: clamp(26px, 6vw, 72px);
-        padding-bottom: clamp(30px, 6vw, 70px);
+        padding-top: clamp(24px, 5vw, 54px);
+        padding-bottom: clamp(26px, 5vw, 54px);
         max-width: 760px;
       }
 
@@ -225,36 +230,106 @@
         );
       }
 
-      /* Footer (minimal like screenshot) */
+      /* Real sections so scrolling feels meaningful */
+      section.block {
+        scroll-margin-top: 96px;
+        padding: 44px 0;
+        border-top: 1px solid rgba(244,244,250,0.10);
+      }
+
+      .block-inner {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 26px;
+        padding: 18px 0 0;
+      }
+
+      .block h2 {
+        margin: 0 0 14px;
+        font-family: "DM Serif Display", serif;
+        font-weight: 400;
+        font-size: 28px;
+        letter-spacing: 0.01em;
+        color: rgba(244,244,250,0.92);
+      }
+
+      .block p {
+        margin: 0 0 12px;
+        color: rgba(244,244,250,0.70);
+        line-height: 1.65;
+        font-size: 16px;
+        max-width: 70ch;
+      }
+
+      .callout {
+        border: 1px solid rgba(255,255,255,0.14);
+        background: rgba(255,255,255,0.05);
+        border-radius: var(--radius);
+        padding: 16px 16px;
+        color: rgba(244,244,250,0.66);
+        line-height: 1.6;
+        font-size: 14px;
+      }
+
+      .callout .label {
+        display: inline-block;
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(244,244,250,0.55);
+        margin-bottom: 10px;
+      }
+
+      /* Footer (minimal, non-repetitive) */
       footer {
-        padding: 34px 0 30px;
+        padding: 28px 0 36px;
+        border-top: 1px solid rgba(244,244,250,0.10);
+        background: transparent; /* avoids the “hard seam” */
       }
 
       .foot {
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         justify-content: space-between;
         gap: 14px;
         flex-wrap: wrap;
       }
 
-      .foot .left-title {
-        font-family: "DM Serif Display", serif;
-        font-size: 22px;
-        color: rgba(244, 244, 250, 0.92);
-        margin: 0;
+      .foot .left {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
       }
 
-      .foot .left-sub {
-        margin: 10px 0 0;
-        color: rgba(244, 244, 250, 0.38);
-        font-size: 15px;
+      .foot .meta {
+        color: rgba(244, 244, 250, 0.50);
+        font-size: 13px;
       }
 
-      .foot .right {
-        color: rgba(244, 244, 250, 0.45);
-        font-size: 15px;
-        padding-bottom: 4px;
+      .foot .links {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .foot .links a {
+        color: rgba(244,244,250,0.62);
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+      }
+
+      .foot .links a:hover {
+        color: rgba(244,244,250,0.92);
+        background: rgba(255,255,255,0.06);
+        border-color: rgba(255,255,255,0.12);
+      }
+
+      @media (max-width: 860px) {
+        .block-inner { grid-template-columns: 1fr; }
       }
 
       @media (max-width: 760px) {
@@ -277,8 +352,9 @@
 
           <nav aria-label="Primary">
             <ul>
-              <li><a class="navlink" href="#manifesto">Brand Manifesto</a></li>
+              <li><a class="navlink" href="#manifesto">Manifesto</a></li>
               <li><a class="navlink" href="#archive">Archive</a></li>
+              <li><a class="navlink" href="#about">About</a></li>
             </ul>
           </nav>
         </div>
@@ -307,26 +383,82 @@
           </div>
         </section>
 
-        <!-- Placeholder anchors (so buttons/nav work now, content later) -->
-        <section id="manifesto" style="height: 1px;"></section>
-        <section id="archive" style="height: 1px;"></section>
-        <section id="about" style="height: 1px;"></section>
-
-        <footer>
-          <div class="foot">
+        <section id="manifesto" class="block" aria-label="Brand Manifesto">
+          <h2>Brand Manifesto</h2>
+          <div class="block-inner">
             <div>
-              <p class="left-title">Subterranean District</p>
-              <p class="left-sub">Subterranean District</p>
+              <p>
+                This is where the manifesto lives. Keep the homepage version tight — a strong excerpt — then expand into a full page later if you want.
+              </p>
+              <p>
+                For now, this section exists so the site feels real immediately and the navigation actually “lands” somewhere.
+              </p>
             </div>
-
-            <div class="right">The district beneath the surface.</div>
+            <aside class="callout">
+              <div class="label">Next</div>
+              Add a short excerpt (6–12 lines) here pulled directly from your manifesto.
+              Then we’ll build <span style="color: rgba(244,244,250,0.86);">manifesto.html</span> as the full read.
+            </aside>
           </div>
-        </footer>
+        </section>
+
+        <section id="archive" class="block" aria-label="Archive">
+          <h2>Archive</h2>
+          <div class="block-inner">
+            <div>
+              <p>
+                This becomes your list of posts, issues, or entries. When you’re ready, we’ll convert this into a clean grid of cards (title, date, tag, excerpt).
+              </p>
+              <p>
+                Even before posts exist, it should still feel intentional — like a sealed door you’ll open soon.
+              </p>
+            </div>
+            <aside class="callout">
+              <div class="label">Structure</div>
+              Suggested: Issues, Essays, Photo Studies, Interviews, Field Notes.
+            </aside>
+          </div>
+        </section>
+
+        <section id="about" class="block" aria-label="About">
+          <h2>About</h2>
+          <div class="block-inner">
+            <div>
+              <p>
+                A short statement about what Subterranean District is, what it’s trying to protect, and what it’s trying to reveal.
+              </p>
+              <p>
+                Add submissions/collabs/contact details here when you’re ready.
+              </p>
+            </div>
+            <aside class="callout">
+              <div class="label">Tone</div>
+              Keep it spare. One paragraph that reads like a vow.
+            </aside>
+          </div>
+        </section>
       </div>
     </main>
 
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <div class="left">
+            <div class="meta">© <span id="y"></span> Subterranean District</div>
+            <div class="meta">The district beneath the surface.</div>
+          </div>
+
+          <div class="links" aria-label="Footer links">
+            <a href="#manifesto">Manifesto</a>
+            <a href="#archive">Archive</a>
+            <a href="#about">About</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <script>
-      // Smooth scrolling (Safari-friendly)
+      // Smooth scrolling (Safari-friendly) + avoids “tiny anchor” confusion
       document.querySelectorAll('a[href^="#"]').forEach((a) => {
         a.addEventListener("click", (e) => {
           const id = a.getAttribute("href");
@@ -337,6 +469,8 @@
           el.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
+
+      document.getElementById("y").textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
