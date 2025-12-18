@@ -4,8 +4,9 @@
 @import "minima";
 
 /* =========================================================
-   Subterranean District — Dark Editorial System
-   Colorway: Cobalt + Burgundy
+   Subterranean District
+   Dark Editorial System
+   Palette: Cobalt Blue + Burgundy
 ========================================================= */
 
 :root {
@@ -17,15 +18,21 @@
   --ink-3: rgba(233, 229, 223, 0.55);
 
   /* accents */
-  --cobalt: #2f66ff;    /* cobalt blue */
-  --burgundy: #7a1b2d;  /* burgundy */
+  --cobalt: #2f66ff;
+  --burgundy: #7a1b2d;
 
   --line: rgba(233, 229, 223, 0.12);
   --line-2: rgba(233, 229, 223, 0.18);
 }
 
-/* ---------- Base atmosphere ---------- */
-html, body { background: var(--bg); }
+/* =========================================================
+   Base atmosphere
+========================================================= */
+
+html,
+body {
+  background: var(--bg);
+}
 
 body {
   color: var(--ink);
@@ -38,58 +45,75 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* noir film texture + cobalt/burgundy glow */
+/* Cinematic texture + color wash */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(1200px 700px at 12% 12%, rgba(47, 102, 255, 0.10), transparent 62%),
-    radial-gradient(900px 650px at 78% 18%, rgba(122, 27, 45, 0.10), transparent 60%),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.018), rgba(255,255,255,0.018) 1px, transparent 1px, transparent 3px);
+    radial-gradient(1200px 700px at 12% 12%, rgba(47,102,255,0.10), transparent 62%),
+    radial-gradient(900px 650px at 78% 18%, rgba(122,27,45,0.10), transparent 60%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.018),
+      rgba(255,255,255,0.018) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  opacity: 0.45;
   mix-blend-mode: screen;
-  opacity: 0.42;
 }
 
-/* keep everything dark */
+/* =========================================================
+   Layout cleanup
+========================================================= */
+
 .site-header,
 .site-footer,
 .page-content,
 .wrapper,
-.post-content,
-.page-content .wrapper {
+.post-content {
   background: transparent;
 }
 
-/* selection */
-::selection { background: rgba(47, 102, 255, 0.20); }
-
-/* ---------- Links ---------- */
-a {
-  color: rgba(233, 229, 223, 0.88);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(233, 229, 223, 0.22);
+.wrapper {
+  max-width: 920px;
 }
 
-a:hover {
-  color: #ffffff;
-  border-bottom-color: rgba(47, 102, 255, 0.70);
+.page-content {
+  padding: 64px 0 96px;
 }
-
-/* ---------- Layout ---------- */
-.wrapper { max-width: 920px; }
-
-.page-content { padding: 64px 0 92px 0; }
 
 .post-content,
-.page-content .wrapper { max-width: 760px; }
+.page-content .wrapper {
+  max-width: 760px;
+}
 
-/* ---------- Header ---------- */
+/* =========================================================
+   Header
+========================================================= */
+
 .site-header {
   border: none;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
+  position: relative;
+}
+
+/* subtle cobalt → burgundy rule */
+.site-header::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(47,102,255,0),
+    rgba(47,102,255,0.35),
+    rgba(122,27,45,0.35),
+    rgba(122,27,45,0)
+  );
 }
 
 .site-title,
@@ -98,26 +122,49 @@ a:hover {
   letter-spacing: 0.10em;
   text-transform: lowercase;
   font-weight: 400;
+  border: none;
 }
 
-/* remove the heavy header underline */
-.site-title {
-  border-bottom: none;
-}
-
-.site-nav .page-link {
-  color: rgba(233, 229, 223, 0.72);
-  letter-spacing: 0.07em;
+.site-nav .page-link,
+.site-nav .page-link:visited {
+  color: rgba(233,229,223,0.72);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 11px;
   border: none;
-  padding: 0;
   margin-left: 16px;
 }
 
-.site-nav .page-link:hover { color: #ffffff; }
+.site-nav .page-link:hover {
+  color: #ffffff;
+}
 
-/* ---------- Titles ---------- */
+/* =========================================================
+   Links — FULL override (fixes visited blue issue)
+========================================================= */
+
+a,
+a:visited {
+  color: rgba(233,229,223,0.88);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(233,229,223,0.22);
+}
+
+a:hover,
+a:focus {
+  color: #ffffff;
+  border-bottom-color: rgba(47,102,255,0.70);
+}
+
+a:active {
+  color: #ffffff;
+  border-bottom-color: rgba(122,27,45,0.70);
+}
+
+/* =========================================================
+   Typography
+========================================================= */
+
 .page-title,
 .post-title {
   color: #f4f0ea;
@@ -127,10 +174,9 @@ a:hover {
   margin-top: 6px;
 }
 
-.post-title { font-size: 42px; }
 .page-title { font-size: 38px; }
+.post-title { font-size: 42px; }
 
-/* ---------- Meta ---------- */
 .post-meta {
   color: var(--ink-3);
   font-size: 12px;
@@ -138,75 +184,33 @@ a:hover {
   text-transform: uppercase;
 }
 
-/* ---------- Rhythm ---------- */
-.post-content p,
-.page-content p { margin: 0 0 22px 0; }
+p {
+  margin-bottom: 22px;
+}
 
-.post-content h2,
-.page-content h2 {
+h2 {
   color: #f4f0ea;
   font-weight: 400;
-  letter-spacing: 0.01em;
   margin-top: 46px;
   margin-bottom: 14px;
 }
 
-.post-content h3,
-.page-content h3 {
-  color: rgba(244, 240, 234, 0.92);
+h3 {
+  color: rgba(244,240,234,0.92);
   font-weight: 400;
   margin-top: 34px;
   margin-bottom: 10px;
 }
 
-/* ---------- Lists ---------- */
-.post-content ul,
-.post-content ol,
-.page-content ul,
-.page-content ol {
-  margin: 0 0 22px 22px;
-}
-
-.post-content li,
-.page-content li { margin-bottom: 10px; }
-
-/* ---------- Dividers ---------- */
-hr {
-  border: none;
-  border-top: 1px solid var(--line);
-  margin: 44px 0;
-}
-
-/* ---------- Quotes ---------- */
-blockquote {
-  color: var(--ink-2);
-  border-left: 2px solid rgba(122, 27, 45, 0.30);
-  padding-left: 18px;
-  margin-left: 0;
-}
-
-/* ---------- Code blocks ---------- */
-pre, code {
-  background: rgba(233, 229, 223, 0.06);
-  border: 1px solid rgba(233, 229, 223, 0.10);
-}
-
-code {
-  padding: 2px 6px;
-  border-radius: 8px;
-}
-
-pre {
-  padding: 14px 16px;
-  border-radius: 12px;
-}
-
 /* =========================================================
-   Homepage (single, clean, no duplication)
+   Homepage hero
 ========================================================= */
-.sd-hero { margin-top: 10px; }
 
-.sd-hero .sd-kicker {
+.sd-hero {
+  margin-top: 12px;
+}
+
+.sd-kicker {
   color: var(--ink-3);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -214,21 +218,25 @@ pre {
   margin-bottom: 14px;
 }
 
-.sd-hero .sd-tagline {
+.sd-tagline {
   font-size: 20px;
   color: var(--ink-2);
   max-width: 54ch;
 }
 
-/* Buttons / links */
+/* =========================================================
+   Buttons (Manifesto / Archive / About)
+========================================================= */
+
 .sd-links {
   margin-top: 26px;
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
-.sd-link {
+.sd-link,
+.sd-link:visited {
   display: inline-block;
   padding: 10px 12px;
   border-radius: 14px;
@@ -241,34 +249,38 @@ pre {
   border-bottom: none;
 }
 
-.sd-link:hover {
-  border-color: rgba(47, 102, 255, 0.45);
-  box-shadow: 0 0 0 3px rgba(47, 102, 255, 0.12);
+.sd-link:hover,
+.sd-link:focus {
   color: #ffffff;
+  border-color: rgba(47,102,255,0.55);
+  box-shadow: 0 0 0 3px rgba(47,102,255,0.12);
 }
 
-/* subtle “featured” accent option */
-.sd-link--primary {
-  border-color: rgba(122, 27, 45, 0.45);
+.sd-link:active {
+  border-color: rgba(122,27,45,0.70);
+  box-shadow: 0 0 0 3px rgba(122,27,45,0.12);
 }
 
-.sd-link--primary:hover {
-  border-color: rgba(122, 27, 45, 0.75);
-  box-shadow: 0 0 0 3px rgba(122, 27, 45, 0.12);
+/* primary (burgundy) */
+.sd-link--primary,
+.sd-link--primary:visited {
+  border-color: rgba(122,27,45,0.55);
+}
+
+.sd-link--primary:hover,
+.sd-link--primary:focus {
+  border-color: rgba(122,27,45,0.85);
+  box-shadow: 0 0 0 3px rgba(122,27,45,0.14);
 }
 
 /* =========================================================
-   Archive catalog styling
+   Archive
 ========================================================= */
-.sd-archive-intro {
-  color: var(--ink-2);
-  margin-bottom: 22px;
-}
 
 .sd-archive-list {
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .sd-archive-item {
@@ -288,21 +300,16 @@ pre {
   margin-right: 10px;
 }
 
-.sd-archive-title a {
-  border-bottom-color: rgba(47, 102, 255, 0.22);
-}
+/* =========================================================
+   Footer
+========================================================= */
 
-.sd-archive-title a:hover {
-  border-bottom-color: rgba(47, 102, 255, 0.70);
-}
-
-/* ---------- Footer ---------- */
 .site-footer {
   border: none;
-  color: rgba(233, 229, 223, 0.45);
+  color: rgba(233,229,223,0.45);
 }
 
 .site-footer a {
-  color: rgba(233, 229, 223, 0.65);
-  border-bottom: 1px solid rgba(233, 229, 223, 0.18);
+  color: rgba(233,229,223,0.65);
+  border-bottom: 1px solid rgba(233,229,223,0.18);
 }
