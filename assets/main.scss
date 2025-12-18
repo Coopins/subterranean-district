@@ -5,30 +5,27 @@
 
 /* =========================================================
    Subterranean District — Dark Editorial System
-   (Minima override + cinematic + controlled color)
+   Colorway: Cobalt + Burgundy
 ========================================================= */
 
-/* ---------- Color system ---------- */
 :root {
-  --bg: #0b0b0c;
-  --bg-2: #0f1012;
-  --ink: #e6e2dc;
-  --ink-2: rgba(230, 226, 220, 0.78);
-  --ink-3: rgba(230, 226, 220, 0.55);
+  --bg: #090a0c;
+  --bg-2: #0e1016;
 
-  /* accents (subtle futurism) */
-  --accent: #58d6ff;     /* cyan */
-  --accent-2: #d17a5b;   /* rust */
-  --accent-3: #a78bfa;   /* violet */
+  --ink: #e9e5df;
+  --ink-2: rgba(233, 229, 223, 0.78);
+  --ink-3: rgba(233, 229, 223, 0.55);
 
-  --line: rgba(230, 226, 220, 0.12);
-  --line-2: rgba(230, 226, 220, 0.18);
+  /* accents */
+  --cobalt: #2f66ff;    /* cobalt blue */
+  --burgundy: #7a1b2d;  /* burgundy */
+
+  --line: rgba(233, 229, 223, 0.12);
+  --line-2: rgba(233, 229, 223, 0.18);
 }
 
 /* ---------- Base atmosphere ---------- */
-html, body {
-  background: var(--bg);
-}
+html, body { background: var(--bg); }
 
 body {
   color: var(--ink);
@@ -41,22 +38,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* subtle “film” texture (no images needed) */
+/* noir film texture + cobalt/burgundy glow */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(1200px 600px at 15% 10%, rgba(88, 214, 255, 0.06), transparent 60%),
-    radial-gradient(900px 500px at 80% 20%, rgba(167, 139, 250, 0.04), transparent 55%),
-    radial-gradient(1200px 800px at 60% 90%, rgba(209, 122, 91, 0.04), transparent 60%),
+    radial-gradient(1200px 700px at 12% 12%, rgba(47, 102, 255, 0.10), transparent 62%),
+    radial-gradient(900px 650px at 78% 18%, rgba(122, 27, 45, 0.10), transparent 60%),
     repeating-linear-gradient(0deg, rgba(255,255,255,0.018), rgba(255,255,255,0.018) 1px, transparent 1px, transparent 3px);
   mix-blend-mode: screen;
-  opacity: 0.55;
+  opacity: 0.42;
 }
 
-/* prevent Minima’s white sections */
+/* keep everything dark */
 .site-header,
 .site-footer,
 .page-content,
@@ -67,31 +63,27 @@ body::before {
 }
 
 /* selection */
-::selection { background: rgba(88, 214, 255, 0.18); }
+::selection { background: rgba(47, 102, 255, 0.20); }
 
-/* ---------- Links (quiet + deliberate) ---------- */
+/* ---------- Links ---------- */
 a {
-  color: rgba(230, 226, 220, 0.88);
+  color: rgba(233, 229, 223, 0.88);
   text-decoration: none;
-  border-bottom: 1px solid rgba(230, 226, 220, 0.22);
+  border-bottom: 1px solid rgba(233, 229, 223, 0.22);
 }
 
 a:hover {
   color: #ffffff;
-  border-bottom-color: rgba(88, 214, 255, 0.65);
+  border-bottom-color: rgba(47, 102, 255, 0.70);
 }
 
-/* ---------- Layout / spacing ---------- */
+/* ---------- Layout ---------- */
 .wrapper { max-width: 920px; }
 
-.page-content {
-  padding: 64px 0 88px 0;
-}
+.page-content { padding: 64px 0 92px 0; }
 
 .post-content,
-.page-content .wrapper {
-  max-width: 760px;
-}
+.page-content .wrapper { max-width: 760px; }
 
 /* ---------- Header ---------- */
 .site-header {
@@ -103,14 +95,19 @@ a:hover {
 .site-title,
 .site-title:visited {
   color: var(--ink);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.10em;
   text-transform: lowercase;
   font-weight: 400;
 }
 
+/* remove the heavy header underline */
+.site-title {
+  border-bottom: none;
+}
+
 .site-nav .page-link {
-  color: rgba(230, 226, 220, 0.75);
-  letter-spacing: 0.06em;
+  color: rgba(233, 229, 223, 0.72);
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   font-size: 11px;
   border: none;
@@ -118,14 +115,12 @@ a:hover {
   margin-left: 16px;
 }
 
-.site-nav .page-link:hover {
-  color: #ffffff;
-}
+.site-nav .page-link:hover { color: #ffffff; }
 
 /* ---------- Titles ---------- */
 .page-title,
 .post-title {
-  color: #f2eee8;
+  color: #f4f0ea;
   font-weight: 400;
   letter-spacing: 0.02em;
   line-height: 1.12;
@@ -135,21 +130,21 @@ a:hover {
 .post-title { font-size: 42px; }
 .page-title { font-size: 38px; }
 
-/* ---------- Post meta ---------- */
+/* ---------- Meta ---------- */
 .post-meta {
   color: var(--ink-3);
   font-size: 12px;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-/* ---------- Body rhythm ---------- */
+/* ---------- Rhythm ---------- */
 .post-content p,
 .page-content p { margin: 0 0 22px 0; }
 
 .post-content h2,
 .page-content h2 {
-  color: #f2eee8;
+  color: #f4f0ea;
   font-weight: 400;
   letter-spacing: 0.01em;
   margin-top: 46px;
@@ -158,7 +153,7 @@ a:hover {
 
 .post-content h3,
 .page-content h3 {
-  color: rgba(242, 238, 232, 0.92);
+  color: rgba(244, 240, 234, 0.92);
   font-weight: 400;
   margin-top: 34px;
   margin-bottom: 10px;
@@ -185,15 +180,15 @@ hr {
 /* ---------- Quotes ---------- */
 blockquote {
   color: var(--ink-2);
-  border-left: 2px solid rgba(88, 214, 255, 0.22);
+  border-left: 2px solid rgba(122, 27, 45, 0.30);
   padding-left: 18px;
   margin-left: 0;
 }
 
-/* ---------- Code blocks (subdued) ---------- */
+/* ---------- Code blocks ---------- */
 pre, code {
-  background: rgba(230, 226, 220, 0.06);
-  border: 1px solid rgba(230, 226, 220, 0.10);
+  background: rgba(233, 229, 223, 0.06);
+  border: 1px solid rgba(233, 229, 223, 0.10);
 }
 
 code {
@@ -207,15 +202,13 @@ pre {
 }
 
 /* =========================================================
-   Homepage as a statement (no bullets, no “blog” energy)
+   Homepage (single, clean, no duplication)
 ========================================================= */
-.sd-hero {
-  margin-top: 10px;
-}
+.sd-hero { margin-top: 10px; }
 
 .sd-hero .sd-kicker {
   color: var(--ink-3);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 11px;
   margin-bottom: 14px;
@@ -224,9 +217,10 @@ pre {
 .sd-hero .sd-tagline {
   font-size: 20px;
   color: var(--ink-2);
-  max-width: 52ch;
+  max-width: 54ch;
 }
 
+/* Buttons / links */
 .sd-links {
   margin-top: 26px;
   display: flex;
@@ -239,22 +233,32 @@ pre {
   padding: 10px 12px;
   border-radius: 14px;
   background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(230,226,220,0.10);
-  color: rgba(230,226,220,0.88);
-  letter-spacing: 0.04em;
+  border: 1px solid rgba(233,229,223,0.12);
+  color: rgba(233,229,223,0.88);
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   font-size: 11px;
   border-bottom: none;
 }
 
 .sd-link:hover {
-  border-color: rgba(88,214,255,0.35);
-  box-shadow: 0 0 0 3px rgba(88,214,255,0.10);
+  border-color: rgba(47, 102, 255, 0.45);
+  box-shadow: 0 0 0 3px rgba(47, 102, 255, 0.12);
   color: #ffffff;
 }
 
+/* subtle “featured” accent option */
+.sd-link--primary {
+  border-color: rgba(122, 27, 45, 0.45);
+}
+
+.sd-link--primary:hover {
+  border-color: rgba(122, 27, 45, 0.75);
+  box-shadow: 0 0 0 3px rgba(122, 27, 45, 0.12);
+}
+
 /* =========================================================
-   Archive as a catalog
+   Archive catalog styling
 ========================================================= */
 .sd-archive-intro {
   color: var(--ink-2);
@@ -278,27 +282,27 @@ pre {
 
 .sd-archive-year {
   color: var(--ink-3);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   font-size: 11px;
   margin-right: 10px;
 }
 
 .sd-archive-title a {
-  border-bottom-color: rgba(88, 214, 255, 0.22);
+  border-bottom-color: rgba(47, 102, 255, 0.22);
 }
 
 .sd-archive-title a:hover {
-  border-bottom-color: rgba(88, 214, 255, 0.65);
+  border-bottom-color: rgba(47, 102, 255, 0.70);
 }
 
 /* ---------- Footer ---------- */
 .site-footer {
   border: none;
-  color: rgba(230, 226, 220, 0.45);
+  color: rgba(233, 229, 223, 0.45);
 }
 
 .site-footer a {
-  color: rgba(230, 226, 220, 0.65);
-  border-bottom: 1px solid rgba(230, 226, 220, 0.18);
+  color: rgba(233, 229, 223, 0.65);
+  border-bottom: 1px solid rgba(233, 229, 223, 0.18);
 }
