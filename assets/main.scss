@@ -7,11 +7,12 @@
    Subterranean District
    Dark Editorial System
    Palette: Cobalt Blue + Burgundy
+   Goal: Background blend that feels cinematic, not loud
 ========================================================= */
 
 :root {
-  --bg: #090a0c;
-  --bg-2: #0e1016;
+  --bg: #07080b;
+  --bg-2: #0b0d14;
 
   --ink: #e9e5df;
   --ink-2: rgba(233, 229, 223, 0.78);
@@ -26,13 +27,22 @@
 }
 
 /* =========================================================
-   Base atmosphere
+   Background blend (the main change)
 ========================================================= */
 
 html,
 body {
-  background: var(--bg);
+  /* true site-wide cobalt x burgundy blend */
+  background:
+    radial-gradient(1100px 700px at 16% 18%, rgba(47,102,255,0.18), transparent 62%),
+    radial-gradient(1000px 760px at 78% 22%, rgba(122,27,45,0.18), transparent 60%),
+    linear-gradient(135deg, #07080b 0%, #070810 38%, #0a0b12 62%, #07080b 100%);
+  background-color: var(--bg);
 }
+
+/* =========================================================
+   Base atmosphere
+========================================================= */
 
 body {
   color: var(--ink);
@@ -45,24 +55,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Cinematic texture + color wash */
+/* Cinematic texture (subtle, non-distracting) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(1200px 700px at 12% 12%, rgba(47,102,255,0.10), transparent 62%),
-    radial-gradient(900px 650px at 78% 18%, rgba(122,27,45,0.10), transparent 60%),
+    /* soft vignette */
+    radial-gradient(1200px 900px at 50% 30%, rgba(0,0,0,0.0), rgba(0,0,0,0.55)),
+    /* minimal scan texture */
     repeating-linear-gradient(
       0deg,
-      rgba(255,255,255,0.018),
-      rgba(255,255,255,0.018) 1px,
+      rgba(255,255,255,0.012),
+      rgba(255,255,255,0.012) 1px,
       transparent 1px,
-      transparent 3px
+      transparent 4px
     );
-  opacity: 0.45;
-  mix-blend-mode: screen;
+  opacity: 0.38;
+  mix-blend-mode: overlay;
 }
 
 /* =========================================================
@@ -110,8 +121,8 @@ body::before {
   background: linear-gradient(
     90deg,
     rgba(47,102,255,0),
-    rgba(47,102,255,0.35),
-    rgba(122,27,45,0.35),
+    rgba(47,102,255,0.30),
+    rgba(122,27,45,0.30),
     rgba(122,27,45,0)
   );
 }
@@ -140,7 +151,7 @@ body::before {
 }
 
 /* =========================================================
-   Links — FULL override (fixes visited blue issue)
+   Links — FULL override (no visited blue/purple)
 ========================================================= */
 
 a,
