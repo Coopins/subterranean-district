@@ -1,14 +1,16 @@
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#12132b" />
+    <meta name="theme-color" content="#141a45" />
     <title>Subterranean District | The district beneath the surface.</title>
     <meta
       name="description"
       content="Culture, identity, city life, and underground storytelling — documented honestly, with intention."
     />
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,21 +20,20 @@
 
     <style>
       :root {
+        /* Brand-true palette (no black) */
         --ink: rgba(244, 244, 250, 0.96);
         --muted: rgba(244, 244, 250, 0.72);
         --faint: rgba(244, 244, 250, 0.55);
 
-        --navy-1: #0b1234;
-        --navy-2: #141a45;
+        --navy: #141a45;
         --twilight: #2a1d4a;
-        --burgundy-1: #3a1830;
+        --burgundy: #3a1830;
 
         --line: rgba(244, 244, 250, 0.14);
         --glass: rgba(255, 255, 255, 0.06);
+        --glass2: rgba(255, 255, 255, 0.085);
 
-        --shadow: 0 18px 60px rgba(6, 7, 22, 0.35);
-
-        --radius-lg: 22px;
+        --radius: 18px;
         --maxw: 1120px;
         --padx: clamp(18px, 4vw, 40px);
       }
@@ -45,16 +46,17 @@
         color: var(--ink);
         font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 
-        /* Blue + burgundy blend (no black) */
+        /* Blue + burgundy blend */
         background:
-          radial-gradient(1100px 680px at 18% 18%, rgba(80, 120, 255, 0.22), transparent 55%),
-          radial-gradient(980px 620px at 82% 30%, rgba(160, 60, 110, 0.22), transparent 60%),
-          linear-gradient(135deg, var(--navy-2) 0%, var(--twilight) 50%, var(--burgundy-1) 100%);
+          radial-gradient(1150px 720px at 16% 18%, rgba(80, 120, 255, 0.22), transparent 58%),
+          radial-gradient(980px 620px at 82% 34%, rgba(160, 60, 110, 0.22), transparent 60%),
+          linear-gradient(135deg, var(--navy) 0%, var(--twilight) 50%, var(--burgundy) 100%);
 
         background-attachment: fixed;
         overflow-x: hidden;
       }
 
+      /* Subtle “district grid” texture */
       body::before {
         content: "";
         position: fixed;
@@ -63,8 +65,8 @@
         background-image:
           linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
           linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-        background-size: 88px 88px;
-        opacity: 0.18;
+        background-size: 92px 92px;
+        opacity: 0.16;
         mix-blend-mode: overlay;
       }
 
@@ -77,108 +79,115 @@
         padding: 0 var(--padx);
       }
 
+      /* Header */
       header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        background: linear-gradient(to bottom, rgba(12, 14, 40, 0.62), rgba(12, 14, 40, 0.12));
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        position: relative;
+        padding: 22px 0 10px;
       }
 
       .nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 16px 0;
         gap: 18px;
       }
 
       .brand {
         font-family: "DM Serif Display", serif;
         font-weight: 400;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.14em;
         text-transform: lowercase;
-        font-size: 18px;
-        color: rgba(244, 244, 250, 0.92);
-        white-space: nowrap;
+        font-size: 20px;
+        color: rgba(244, 244, 250, 0.9);
       }
 
       nav ul {
         list-style: none;
         display: flex;
         align-items: center;
-        gap: 18px;
+        gap: 22px;
         margin: 0;
         padding: 0;
       }
 
       .navlink {
         font-size: 12px;
-        letter-spacing: 0.14em;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: rgba(244, 244, 250, 0.78);
-        padding: 10px 10px;
+        color: rgba(244, 244, 250, 0.72);
+        padding: 10px 8px;
         border-radius: 999px;
         border: 1px solid transparent;
-        transition: background 180ms ease, border 180ms ease, color 180ms ease, transform 180ms ease;
+        transition: background 180ms ease, border 180ms ease, color 180ms ease;
       }
 
       .navlink:hover {
         background: rgba(255, 255, 255, 0.06);
         border-color: rgba(255, 255, 255, 0.12);
         color: rgba(244, 244, 250, 0.92);
-        transform: translateY(-1px);
       }
 
+      /* Thin accent line (subtle) */
+      .accent-line {
+        margin-top: 18px;
+        height: 1px;
+        width: 100%;
+        background: linear-gradient(
+          to right,
+          rgba(244,244,250,0.00),
+          rgba(160,60,110,0.28),
+          rgba(244,244,250,0.00)
+        );
+        opacity: 0.6;
+      }
+
+      /* Main / Hero (layout like your screenshot) */
       main {
-        padding: clamp(36px, 5vw, 66px) 0 50px;
+        padding: clamp(40px, 6vw, 78px) 0 56px;
       }
 
       .hero {
-        border-radius: var(--radius-lg);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
-        border: 1px solid rgba(255, 255, 255, 0.11);
-        box-shadow: var(--shadow);
-        padding: clamp(26px, 4vw, 44px);
+        padding-top: clamp(26px, 6vw, 72px);
+        padding-bottom: clamp(30px, 6vw, 70px);
+        max-width: 760px;
       }
 
       .eyebrow {
         font-size: 12px;
         letter-spacing: 0.22em;
         text-transform: uppercase;
-        color: rgba(244, 244, 250, 0.58);
-        margin: 0 0 16px;
+        color: rgba(244, 244, 250, 0.55);
+        margin: 0 0 18px;
       }
 
       h1 {
-        margin: 0 0 10px;
+        margin: 0 0 18px;
         font-family: "DM Serif Display", serif;
         font-weight: 400;
-        font-size: clamp(42px, 4.8vw, 68px);
+        font-size: clamp(46px, 5.2vw, 74px);
         line-height: 1.02;
+        letter-spacing: 0.01em;
       }
 
-      .subhead {
-        margin: 0 0 16px;
+      .headline {
+        margin: 0 0 18px;
         font-weight: 600;
-        font-size: clamp(16px, 1.7vw, 18px);
+        font-size: clamp(18px, 2vw, 20px);
         color: rgba(244, 244, 250, 0.92);
       }
 
       .lede {
-        margin: 0 0 22px;
-        font-size: clamp(16px, 1.9vw, 20px);
+        margin: 0 0 28px;
+        font-size: clamp(18px, 2.1vw, 22px);
         line-height: 1.55;
-        color: rgba(244, 244, 250, 0.72);
+        color: rgba(244, 244, 250, 0.68);
         max-width: 60ch;
       }
 
       .actions {
         display: flex;
-        flex-wrap: wrap;
         gap: 12px;
+        flex-wrap: wrap;
       }
 
       .btn {
@@ -190,7 +199,7 @@
         border-radius: 999px;
         border: 1px solid rgba(255, 255, 255, 0.16);
         background: rgba(255, 255, 255, 0.06);
-        color: rgba(244, 244, 250, 0.92);
+        color: rgba(244, 244, 250, 0.9);
         font-size: 12px;
         letter-spacing: 0.14em;
         text-transform: uppercase;
@@ -205,30 +214,53 @@
         border-color: rgba(255, 255, 255, 0.22);
       }
 
+      .btn:active { transform: translateY(0px); }
+
       .btn.primary {
-        background: linear-gradient(135deg, rgba(80, 120, 255, 0.22), rgba(160, 60, 110, 0.22));
-        border-color: rgba(255, 255, 255, 0.22);
+        border-color: rgba(160, 60, 110, 0.35);
+        background: linear-gradient(
+          135deg,
+          rgba(80, 120, 255, 0.14),
+          rgba(160, 60, 110, 0.18)
+        );
       }
 
+      /* Footer (minimal like screenshot) */
       footer {
-        margin-top: 26px;
-        padding: 16px 0 30px;
-        border-top: 1px solid rgba(255, 255, 255, 0.09);
-        color: rgba(244, 244, 250, 0.62);
-        font-size: 13px;
+        padding: 34px 0 30px;
       }
 
       .foot {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: space-between;
-        gap: 12px;
+        gap: 14px;
         flex-wrap: wrap;
       }
 
-      @media (max-width: 720px) {
-        nav ul { gap: 10px; }
-        .navlink { padding: 9px 8px; }
+      .foot .left-title {
+        font-family: "DM Serif Display", serif;
+        font-size: 22px;
+        color: rgba(244, 244, 250, 0.92);
+        margin: 0;
+      }
+
+      .foot .left-sub {
+        margin: 10px 0 0;
+        color: rgba(244, 244, 250, 0.38);
+        font-size: 15px;
+      }
+
+      .foot .right {
+        color: rgba(244, 244, 250, 0.45);
+        font-size: 15px;
+        padding-bottom: 4px;
+      }
+
+      @media (max-width: 760px) {
+        nav ul { gap: 12px; }
+        .navlink { padding: 10px 6px; }
+        .hero { max-width: 100%; }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -242,14 +274,16 @@
       <div class="wrap">
         <div class="nav">
           <a class="brand" href="#top" aria-label="Subterranean District home">subterranean district</a>
+
           <nav aria-label="Primary">
             <ul>
               <li><a class="navlink" href="#manifesto">Brand Manifesto</a></li>
               <li><a class="navlink" href="#archive">Archive</a></li>
-              <li><a class="navlink" href="#about">About</a></li>
             </ul>
           </nav>
         </div>
+
+        <div class="accent-line" aria-hidden="true"></div>
       </div>
     </header>
 
@@ -257,8 +291,10 @@
       <div class="wrap">
         <section class="hero" aria-label="Hero">
           <div class="eyebrow">A living archive</div>
+
           <h1>Subterranean District</h1>
-          <div class="subhead">The district beneath the surface.</div>
+
+          <p class="headline">The district beneath the surface.</p>
 
           <p class="lede">
             Culture, identity, city life, and underground storytelling — documented honestly, with intention.
@@ -271,10 +307,19 @@
           </div>
         </section>
 
+        <!-- Placeholder anchors (so buttons/nav work now, content later) -->
+        <section id="manifesto" style="height: 1px;"></section>
+        <section id="archive" style="height: 1px;"></section>
+        <section id="about" style="height: 1px;"></section>
+
         <footer>
           <div class="foot">
-            <div><strong style="color: rgba(244,244,250,0.82); font-weight: 600;">Subterranean District</strong></div>
-            <div>The district beneath the surface.</div>
+            <div>
+              <p class="left-title">Subterranean District</p>
+              <p class="left-sub">Subterranean District</p>
+            </div>
+
+            <div class="right">The district beneath the surface.</div>
           </div>
         </footer>
       </div>
