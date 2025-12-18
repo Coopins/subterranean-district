@@ -3,117 +3,156 @@
 
 @import "minima";
 
-/* ------------------------------
-   Subterranean District — Cinematic Layer
--------------------------------- */
+/* =========================================================
+   Subterranean District — Dark Editorial System
+   (Minima override + cinematic + controlled color)
+========================================================= */
 
-/* 1) Base atmosphere */
+/* ---------- Color system ---------- */
+:root {
+  --bg: #0b0b0c;
+  --bg-2: #0f1012;
+  --ink: #e6e2dc;
+  --ink-2: rgba(230, 226, 220, 0.78);
+  --ink-3: rgba(230, 226, 220, 0.55);
+
+  /* accents (subtle futurism) */
+  --accent: #58d6ff;     /* cyan */
+  --accent-2: #d17a5b;   /* rust */
+  --accent-3: #a78bfa;   /* violet */
+
+  --line: rgba(230, 226, 220, 0.12);
+  --line-2: rgba(230, 226, 220, 0.18);
+}
+
+/* ---------- Base atmosphere ---------- */
 html, body {
-  background: #0b0b0c;
+  background: var(--bg);
 }
 
 body {
-  color: #e6e2dc;
+  color: var(--ink);
   font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 18px;
-  line-height: 1.75;
+  line-height: 1.78;
   letter-spacing: 0.01em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-::selection {
-  background: rgba(230, 226, 220, 0.18);
+/* subtle “film” texture (no images needed) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 600px at 15% 10%, rgba(88, 214, 255, 0.06), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(167, 139, 250, 0.04), transparent 55%),
+    radial-gradient(1200px 800px at 60% 90%, rgba(209, 122, 91, 0.04), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.018), rgba(255,255,255,0.018) 1px, transparent 1px, transparent 3px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
 }
 
-/* 2) Links: quiet, intentional */
+/* prevent Minima’s white sections */
+.site-header,
+.site-footer,
+.page-content,
+.wrapper,
+.post-content,
+.page-content .wrapper {
+  background: transparent;
+}
+
+/* selection */
+::selection { background: rgba(88, 214, 255, 0.18); }
+
+/* ---------- Links (quiet + deliberate) ---------- */
 a {
-  color: #cfc9bf;
+  color: rgba(230, 226, 220, 0.88);
   text-decoration: none;
-  border-bottom: 1px solid rgba(207, 201, 191, 0.22);
+  border-bottom: 1px solid rgba(230, 226, 220, 0.22);
 }
 
 a:hover {
   color: #ffffff;
-  border-bottom-color: rgba(255, 255, 255, 0.65);
+  border-bottom-color: rgba(88, 214, 255, 0.65);
 }
 
-/* 3) Layout: narrow, editorial, slow */
-.wrapper {
-  max-width: 860px;
-}
+/* ---------- Layout / spacing ---------- */
+.wrapper { max-width: 920px; }
 
 .page-content {
-  padding: 56px 0 80px 0;
+  padding: 64px 0 88px 0;
 }
 
 .post-content,
 .page-content .wrapper {
-  max-width: 720px;
+  max-width: 760px;
 }
 
-/* 4) Header: stripped + restrained */
+/* ---------- Header ---------- */
 .site-header {
-  background: transparent;
   border: none;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .site-title,
 .site-title:visited {
-  color: #e6e2dc;
+  color: var(--ink);
   letter-spacing: 0.08em;
   text-transform: lowercase;
   font-weight: 400;
 }
 
 .site-nav .page-link {
-  color: rgba(230, 226, 220, 0.78);
-  letter-spacing: 0.05em;
+  color: rgba(230, 226, 220, 0.75);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   font-size: 11px;
   border: none;
-  margin-left: 14px;
   padding: 0;
+  margin-left: 16px;
 }
 
 .site-nav .page-link:hover {
   color: #ffffff;
 }
 
-/* 5) Titles: cinematic hierarchy */
+/* ---------- Titles ---------- */
 .page-title,
 .post-title {
   color: #f2eee8;
   font-weight: 400;
   letter-spacing: 0.02em;
-  line-height: 1.15;
-  margin-top: 10px;
+  line-height: 1.12;
+  margin-top: 6px;
 }
 
-.post-title { font-size: 40px; }
-.page-title { font-size: 36px; }
+.post-title { font-size: 42px; }
+.page-title { font-size: 38px; }
 
-/* 6) Post meta: quieter */
+/* ---------- Post meta ---------- */
 .post-meta {
-  color: rgba(230, 226, 220, 0.55);
+  color: var(--ink-3);
   font-size: 12px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
-/* 7) Body text rhythm */
+/* ---------- Body rhythm ---------- */
 .post-content p,
-.page-content p {
-  margin: 0 0 22px 0;
-}
+.page-content p { margin: 0 0 22px 0; }
 
 .post-content h2,
 .page-content h2 {
   color: #f2eee8;
   font-weight: 400;
   letter-spacing: 0.01em;
-  margin-top: 44px;
+  margin-top: 46px;
   margin-bottom: 14px;
 }
 
@@ -125,7 +164,7 @@ a:hover {
   margin-bottom: 10px;
 }
 
-/* 8) Lists: clean */
+/* ---------- Lists ---------- */
 .post-content ul,
 .post-content ol,
 .page-content ul,
@@ -134,18 +173,24 @@ a:hover {
 }
 
 .post-content li,
-.page-content li {
-  margin-bottom: 10px;
-}
+.page-content li { margin-bottom: 10px; }
 
-/* 9) Horizontal rules: minimal divider */
+/* ---------- Dividers ---------- */
 hr {
   border: none;
-  border-top: 1px solid rgba(230, 226, 220, 0.12);
-  margin: 40px 0;
+  border-top: 1px solid var(--line);
+  margin: 44px 0;
 }
 
-/* 10) Code blocks: subdued */
+/* ---------- Quotes ---------- */
+blockquote {
+  color: var(--ink-2);
+  border-left: 2px solid rgba(88, 214, 255, 0.22);
+  padding-left: 18px;
+  margin-left: 0;
+}
+
+/* ---------- Code blocks (subdued) ---------- */
 pre, code {
   background: rgba(230, 226, 220, 0.06);
   border: 1px solid rgba(230, 226, 220, 0.10);
@@ -161,17 +206,94 @@ pre {
   border-radius: 12px;
 }
 
-/* 11) Blockquotes: noir */
-blockquote {
-  color: rgba(230, 226, 220, 0.78);
-  border-left: 2px solid rgba(230, 226, 220, 0.22);
-  padding-left: 18px;
-  margin-left: 0;
+/* =========================================================
+   Homepage as a statement (no bullets, no “blog” energy)
+========================================================= */
+.sd-hero {
+  margin-top: 10px;
 }
 
-/* 12) Footer: nearly invisible */
+.sd-hero .sd-kicker {
+  color: var(--ink-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 11px;
+  margin-bottom: 14px;
+}
+
+.sd-hero .sd-tagline {
+  font-size: 20px;
+  color: var(--ink-2);
+  max-width: 52ch;
+}
+
+.sd-links {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sd-link {
+  display: inline-block;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(230,226,220,0.10);
+  color: rgba(230,226,220,0.88);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 11px;
+  border-bottom: none;
+}
+
+.sd-link:hover {
+  border-color: rgba(88,214,255,0.35);
+  box-shadow: 0 0 0 3px rgba(88,214,255,0.10);
+  color: #ffffff;
+}
+
+/* =========================================================
+   Archive as a catalog
+========================================================= */
+.sd-archive-intro {
+  color: var(--ink-2);
+  margin-bottom: 22px;
+}
+
+.sd-archive-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sd-archive-item {
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.sd-archive-item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.sd-archive-year {
+  color: var(--ink-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 11px;
+  margin-right: 10px;
+}
+
+.sd-archive-title a {
+  border-bottom-color: rgba(88, 214, 255, 0.22);
+}
+
+.sd-archive-title a:hover {
+  border-bottom-color: rgba(88, 214, 255, 0.65);
+}
+
+/* ---------- Footer ---------- */
 .site-footer {
-  background: transparent;
   border: none;
   color: rgba(230, 226, 220, 0.45);
 }
