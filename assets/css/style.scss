@@ -2,4 +2,187 @@
 ---
 
 @import "{{ site.theme }}";
+/* ------------------------------
+   Subterranean District — Cinematic Layer
+   Works with Jekyll Minima
+-------------------------------- */
+
+/* 1) Base atmosphere */
+html, body {
+  background: #0b0b0c;
+}
+
+body {
+  color: #e6e2dc;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 18px;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(230, 226, 220, 0.18);
+}
+
+/* 2) Links: quiet, intentional */
+a {
+  color: #cfc9bf;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(207, 201, 191, 0.22);
+}
+
+a:hover {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.65);
+}
+
+/* 3) Layout: narrow, editorial, slow */
+.wrapper {
+  max-width: 860px;
+}
+
+.page-content {
+  padding: 56px 0 80px 0;
+}
+
+.post-content,
+.page-content .wrapper {
+  max-width: 720px;
+}
+
+/* 4) Header: stripped + restrained */
+.site-header {
+  background: transparent;
+  border: none;
+}
+
+.site-title,
+.site-title:visited {
+  color: #e6e2dc;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  font-weight: 400;
+}
+
+.site-nav .page-link {
+  color: rgba(230, 226, 220, 0.78);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 11px;
+  border: none;
+  margin-left: 14px;
+  padding: 0;
+}
+
+.site-nav .page-link:hover {
+  color: #ffffff;
+}
+
+/* 5) Titles: cinematic hierarchy */
+.page-title,
+.post-title {
+  color: #f2eee8;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  margin-top: 10px;
+}
+
+.post-title {
+  font-size: 40px;
+}
+
+.page-title {
+  font-size: 36px;
+}
+
+/* 6) Post meta: quieter */
+.post-meta {
+  color: rgba(230, 226, 220, 0.55);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* 7) Body text rhythm */
+.post-content p,
+.page-content p {
+  margin: 0 0 22px 0;
+}
+
+.post-content h2,
+.page-content h2 {
+  color: #f2eee8;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-top: 44px;
+  margin-bottom: 14px;
+}
+
+.post-content h3,
+.page-content h3 {
+  color: rgba(242, 238, 232, 0.92);
+  font-weight: 400;
+  margin-top: 34px;
+  margin-bottom: 10px;
+}
+
+/* 8) Lists: clean */
+.post-content ul,
+.post-content ol,
+.page-content ul,
+.page-content ol {
+  margin: 0 0 22px 22px;
+}
+
+.post-content li,
+.page-content li {
+  margin-bottom: 10px;
+}
+
+/* 9) Horizontal rules: minimal divider */
+hr {
+  border: none;
+  border-top: 1px solid rgba(230, 226, 220, 0.12);
+  margin: 40px 0;
+}
+
+/* 10) Code blocks: subdued */
+pre, code {
+  background: rgba(230, 226, 220, 0.06);
+  border: 1px solid rgba(230, 226, 220, 0.10);
+}
+
+code {
+  padding: 2px 6px;
+  border-radius: 8px;
+}
+
+pre {
+  padding: 14px 16px;
+  border-radius: 12px;
+}
+
+/* 11) Blockquotes: noir */
+blockquote {
+  color: rgba(230, 226, 220, 0.78);
+  border-left: 2px solid rgba(230, 226, 220, 0.22);
+  padding-left: 18px;
+  margin-left: 0;
+}
+
+/* 12) Footer: nearly invisible */
+.site-footer {
+  background: transparent;
+  border: none;
+  color: rgba(230, 226, 220, 0.45);
+}
+
+.site-footer a {
+  color: rgba(230, 226, 220, 0.65);
+  border-bottom: 1px solid rgba(230, 226, 220, 0.18);
+}
 
