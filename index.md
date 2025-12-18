@@ -3,10 +3,20 @@ layout: home
 title: Subterranean District
 ---
 
-**The district beneath the surface.**
+<div class="sd-hero">
+  <div class="sd-kicker">A living archive</div>
 
-A living archive of culture, identity, city life, and underground storytelling.
+  # Subterranean District
 
-- [Read the manifesto](/manifesto)
-- [Stories](/archive)
-- [About](/about)
+  **The district beneath the surface.**
+
+  <p class="sd-tagline">
+    Culture, identity, city life, and underground storytelling — documented honestly, with intention.
+  </p>
+
+  <div class="sd-links">
+    <a class="sd-link" href="/subterranean-district/manifesto/">Manifesto</a>
+    <a class="sd-link" href="/subterranean-district/archive/">Archive</a>
+    <a class="sd-link" href="/subterranean-district/about/">About</a>
+  </div>
+</div>
