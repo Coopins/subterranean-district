@@ -1,0 +1,5 @@
+title: Subterranean District
+description: The district beneath the surface.
+theme: minima
+markdown: kramdown
+permalink: /:categories/:title/
