@@ -1,24 +1,27 @@
 /* assets/main.scss */
-/* Subterranean District — Tone Locked */
+/* Subterranean District — Tone Locked (Concrete / Soot / Bone / Rust) */
 
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap");
 
 :root {
-  /* Atmosphere (no pure black/white) */
-  --bg: #0f1216;
-  --bg2: rgba(255, 255, 255, 0.04);
-  --panel: rgba(255, 255, 255, 0.03);
+  /* Material system */
+  --bg-primary: #0e0f11; /* soot black */
+  --bg-secondary: #141517; /* deep charcoal */
+  --bg-panel: rgba(255, 255, 255, 0.03);
 
-  --ink: rgba(244, 244, 250, 0.92);
-  --muted: rgba(244, 244, 250, 0.62);
-  --faint: rgba(244, 244, 250, 0.42);
+  --ink-primary: rgba(242, 242, 238, 0.94); /* bone */
+  --ink-muted: rgba(242, 242, 238, 0.64);
+  --ink-faint: rgba(242, 242, 238, 0.42);
 
-  --rule: rgba(244, 244, 250, 0.10);
-  --rule2: rgba(244, 244, 250, 0.06);
+  --line-strong: rgba(242, 242, 238, 0.18);
+  --line-soft: rgba(242, 242, 238, 0.08);
 
-  /* Accent (oxidation) — rare */
-  --accent: rgba(178, 112, 74, 0.85);
-  --accent-soft: rgba(178, 112, 74, 0.16);
+  /* Oxidation accent (rare) */
+  --rust: rgba(162, 98, 62, 0.85);
+  --rust-soft: rgba(162, 98, 62, 0.18);
+
+  /* Texture light */
+  --concrete-light: rgba(255, 255, 255, 0.06);
 
   /* Type */
   --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -55,7 +58,7 @@ body {
 
 body {
   margin: 0;
-  color: var(--ink);
+  color: var(--ink-primary);
   font-family: var(--font-body);
   font-size: var(--text);
   line-height: var(--leading);
@@ -63,24 +66,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* quiet, worn light */
+  /* Concrete light + oxidation trace */
   background:
-    radial-gradient(1200px 900px at 60% 15%, rgba(255, 255, 255, 0.06), transparent 55%),
-    radial-gradient(900px 700px at 10% 85%, var(--accent-soft), transparent 55%),
-    var(--bg);
+    radial-gradient(1200px 800px at 70% 20%, var(--concrete-light), transparent 60%),
+    radial-gradient(900px 700px at 15% 85%, var(--rust-soft), transparent 65%),
+    var(--bg-primary);
 
   overflow-x: hidden;
 }
 
-/* Subtle “district grain” (not a grid; not glossy) */
+/* Subtle grain (not grid, not glossy) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
   background-image:
-    radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 64px 64px, 96px 96px;
   background-position: 0 0, 18px 22px;
   opacity: 0.10;
@@ -97,7 +100,6 @@ body::before {
   padding: 0;
 }
 
-/* keep seams soft */
 .site-header,
 .site-footer,
 .page-content {
@@ -109,19 +111,19 @@ body::before {
   padding: 0;
 }
 
-/* Header spacing (quiet authority) */
+/* Header */
 .site-header {
   padding-top: var(--s-6);
   padding-bottom: var(--s-4);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line-soft);
 }
 
-/* Footer (non-repetitive, calm) */
+/* Footer */
 .site-footer {
   margin: var(--s-6) auto var(--s-6);
   padding-top: var(--s-4);
-  border-top: 1px solid var(--rule);
-  color: var(--faint);
+  border-top: 1px solid var(--line-soft);
+  color: var(--ink-faint);
   font-size: 13px;
 }
 
@@ -130,55 +132,60 @@ body::before {
 /* ------------------------------ */
 
 a {
-  color: var(--ink);
+  color: var(--ink-primary);
   text-decoration: none;
-  border-bottom: 1px solid rgba(244, 244, 250, 0.20);
+  border-bottom: 1px solid rgba(242, 242, 238, 0.22);
   transition: border-color 120ms ease, color 120ms ease;
 }
+
 a:hover {
-  color: rgba(244, 244, 250, 0.98);
-  border-bottom-color: rgba(178, 112, 74, 0.55);
+  color: rgba(242, 242, 238, 0.98);
+  border-bottom-color: rgba(162, 98, 62, 0.55);
 }
 
 /* ------------------------------ */
-/* Masthead + Nav                  */
+/* Masthead + Nav                 */
 /* ------------------------------ */
 
+/* Logo/title scale locked to reference imagery */
 .site-title {
   font-family: var(--font-display);
-  letter-spacing: 0.06em;
-  font-size: clamp(28px, 3.8vw, 44px);
+  font-size: clamp(36px, 4vw, 44px);
+  letter-spacing: 0.08em;
   line-height: 1;
-  margin: 0 0 var(--s-2);
   text-transform: uppercase;
+  color: var(--ink-primary);
+  margin: 0 0 var(--s-2);
 }
 
-/* Minima uses .site-description in some versions */
+/* Tagline */
 .site-description,
 .site-tagline {
   margin: 0;
-  color: var(--muted);
+  color: var(--ink-muted);
   max-width: 62ch;
 }
 
+/* Nav */
 .site-nav {
   margin-top: var(--s-4);
   padding-top: var(--s-2);
-  border-top: 1px solid var(--rule2);
+  border-top: 1px solid var(--line-soft);
 }
 
 .site-nav .page-link {
   border-bottom: none;
-  color: var(--muted);
+  color: var(--ink-muted);
   letter-spacing: 0.02em;
   margin-right: 16px;
 }
+
 .site-nav .page-link:hover {
-  color: var(--ink);
+  color: var(--ink-primary);
 }
 
 /* ------------------------------ */
-/* Typography                      */
+/* Typography                     */
 /* ------------------------------ */
 
 h1,
@@ -189,144 +196,16 @@ h3 {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   line-height: 1.05;
+  color: var(--ink-primary);
 }
 
-/* Page title printed by Minima: .page-heading */
+/* Minima page title */
 .page-heading,
 h1 {
-  font-size: clamp(44px, 6.6vw, 84px);
+  font-size: clamp(44px, 6.5vw, 82px);
   margin-top: var(--s-6);
 }
 
 h2 {
-  font-size: clamp(26px, 3.4vw, 38px);
-  margin-top: var(--s-6);
-}
-
-h3 {
-  font-size: 20px;
-  margin-top: var(--s-4);
-  letter-spacing: 0.04em;
-}
-
-p {
-  margin: 0 0 var(--s-3);
-  color: var(--ink);
-  max-width: var(--measure);
-}
-
-.lede {
-  font-size: 18px;
-  color: var(--muted);
-  max-width: 62ch;
-}
-
-.small {
-  font-size: 13px;
-  color: var(--faint);
-}
-
-/* separators */
-hr {
-  border: none;
-  border-top: 1px solid var(--rule);
-  margin: var(--s-6) 0;
-}
-
-/* Quotes = the only place serif gets loud */
-blockquote {
-  margin: var(--s-4) 0;
-  padding: var(--s-3) var(--s-4);
-  border-left: 2px solid rgba(178, 112, 74, 0.55);
-  background: var(--panel);
-  border-radius: var(--r);
-}
-blockquote p {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: 18px;
-  line-height: 1.6;
-  color: rgba(244, 244, 250, 0.86);
-}
-
-/* Lists */
-ul,
-ol {
-  margin: 0 0 var(--s-3);
-  padding-left: 1.25rem;
-}
-li {
-  margin: 0.35rem 0;
-  color: var(--muted);
-}
-li strong {
-  color: var(--ink);
-}
-
-/* Code */
-code,
-pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-}
-pre {
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(244, 244, 250, 0.10);
-  border-radius: var(--r);
-  padding: var(--s-3);
-  overflow: auto;
-}
-code {
-  background: rgba(255, 255, 255, 0.06);
-  padding: 0.15em 0.35em;
-  border-radius: 8px;
-  color: rgba(244, 244, 250, 0.9);
-}
-
-/* ------------------------------ */
-/* Archive cards                   */
-/* ------------------------------ */
-
-.post-list {
-  list-style: none;
-  padding: 0;
-  margin: var(--s-4) 0 0;
-}
-
-.post-list li {
-  margin: 0 0 var(--s-4);
-  padding: var(--s-3) var(--s-4);
-  border: 1px solid rgba(244, 244, 250, 0.10);
-  border-radius: var(--r);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.post-meta {
-  display: block;
-  margin-top: 6px;
-  color: var(--faint);
-  font-size: 13px;
-}
-
-/* ------------------------------ */
-/* Safety rails (anti-overdesign) */
-/* ------------------------------ */
-
-/* No bright buttons. If future you adds .btn somewhere, keep it quiet. */
-.btn,
-button,
-input[type="submit"] {
-  font: inherit;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(244, 244, 250, 0.14);
-  border-radius: 999px;
-  padding: 10px 14px;
-}
-
-/* Reduce motion if requested */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    scroll-behavior: auto !important;
-    transition: none !important;
-  }
-}
+  font-size: clamp(26px, 3.2vw, 38px);
+  margin-top: v
