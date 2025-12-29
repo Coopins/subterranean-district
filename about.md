@@ -44,4 +44,3 @@ It’s for people who sense there’s more happening beneath the surface of thin
 <p class="small">
 Subterranean District is a living archive. It will grow, shift, and deepen over time.
 </p>
-
