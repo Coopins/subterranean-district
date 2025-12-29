@@ -208,4 +208,125 @@ h1 {
 
 h2 {
   font-size: clamp(26px, 3.2vw, 38px);
-  margin-top: v
+  margin-top: var(--s-6);
+}
+
+h3 {
+  font-size: 20px;
+  margin-top: var(--s-4);
+  letter-spacing: 0.04em;
+}
+
+p {
+  margin: 0 0 var(--s-3);
+  color: var(--ink-primary);
+  max-width: var(--measure);
+}
+
+.lede {
+  font-size: 18px;
+  color: var(--ink-muted);
+  max-width: 62ch;
+}
+
+.small {
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+/* separators */
+hr {
+  border: none;
+  border-top: 1px solid var(--line-strong);
+  margin: var(--s-6) 0;
+}
+
+/* Quotes (serif lives here) */
+blockquote {
+  margin: var(--s-4) 0;
+  padding: var(--s-3) var(--s-4);
+  border-left: 2px solid rgba(162, 98, 62, 0.55);
+  background: var(--bg-panel);
+  border-radius: var(--r);
+}
+
+blockquote p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(242, 242, 238, 0.86);
+}
+
+/* Lists */
+ul,
+ol {
+  margin: 0 0 var(--s-3);
+  padding-left: 1.25rem;
+}
+
+li {
+  margin: 0.35rem 0;
+  color: var(--ink-muted);
+}
+
+li strong {
+  color: var(--ink-primary);
+}
+
+/* Code */
+code,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+pre {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(242, 242, 238, 0.10);
+  border-radius: var(--r);
+  padding: var(--s-3);
+  overflow: auto;
+}
+
+code {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15em 0.35em;
+  border-radius: 8px;
+  color: rgba(242, 242, 238, 0.92);
+}
+
+/* ------------------------------ */
+/* Archive cards                  */
+/* ------------------------------ */
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-4) 0 0;
+}
+
+.post-list li {
+  margin: 0 0 var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid rgba(242, 242, 238, 0.10);
+  border-radius: var(--r);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.post-meta {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+/* ------------------------------ */
+/* Safety rails                   */
+/* ------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
