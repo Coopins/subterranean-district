@@ -13,9 +13,9 @@ Culture, identity, city life, and underground storytelling — documented honest
 </p>
 
 <p class="small">
-<a href="/manifesto/">Manifesto</a> ·
-<a href="/archive/">Archive</a> ·
-<a href="/about/">About</a>
+<a href="{{ '/manifesto/' | relative_url }}">Manifesto</a> ·
+<a href="{{ '/archive/' | relative_url }}">Archive</a> ·
+<a href="{{ '/about/' | relative_url }}">About</a>
 </p>
 
 <hr>
@@ -45,7 +45,7 @@ This is a place for attention. For patience. For work that values depth over imm
 </blockquote>
 
 <p class="small">
-<a href="/manifesto/">Read the full manifesto →</a>
+<a href="{{ '/manifesto/' | relative_url }}">Read the full manifesto →</a>
 </p>
 
 <hr>
@@ -69,7 +69,7 @@ This is a place for attention. For patience. For work that values depth over imm
 </ul>
 
 <p class="small">
-<a href="/archive/">Enter the archive →</a>
+<a href="{{ '/archive/' | relative_url }}">Enter the archive →</a>
 </p>
 {% else %}
 <p class="small">
