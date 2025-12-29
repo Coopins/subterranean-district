@@ -1,1 +1,264 @@
+/* assets/main.css */
+/* Subterranean District — Tone Locked (Concrete / Soot / Bone / Rust) */
 
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap");
+
+:root {
+  /* Material system */
+  --bg-primary: #0e0f11; /* soot black */
+  --bg-secondary: #141517; /* deep charcoal */
+  --bg-panel: rgba(255, 255, 255, 0.03);
+
+  --ink-primary: rgba(242, 242, 238, 0.94); /* bone */
+  --ink-muted: rgba(242, 242, 238, 0.64);
+  --ink-faint: rgba(242, 242, 238, 0.42);
+
+  --line-strong: rgba(242, 242, 238, 0.18);
+  --line-soft: rgba(242, 242, 238, 0.08);
+
+  /* Oxidation accent (rare) */
+  --rust: rgba(162, 98, 62, 0.85);
+  --rust-soft: rgba(162, 98, 62, 0.18);
+
+  /* Texture light */
+  --concrete-light: rgba(255, 255, 255, 0.06);
+
+  /* Type */
+  --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-display: "Bebas Neue", "Oswald", "Anton", "Impact", sans-serif;
+  --font-serif: "DM Serif Display", Georgia, "Times New Roman", serif;
+
+  /* Rhythm */
+  --text: 16px;
+  --leading: 1.7;
+  --measure: 70ch;
+
+  /* Spacing */
+  --s-1: 8px;
+  --s-2: 12px;
+  --s-3: 18px;
+  --s-4: 28px;
+  --s-5: 44px;
+  --s-6: 64px;
+
+  /* Radius */
+  --r: 14px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink-primary);
+  font-family: var(--font-body);
+  font-size: var(--text);
+  line-height: var(--leading);
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background:
+    radial-gradient(1200px 800px at 70% 20%, var(--concrete-light), transparent 60%),
+    radial-gradient(900px 700px at 15% 85%, var(--rust-soft), transparent 65%),
+    var(--bg-primary);
+
+  overflow-x: hidden;
+}
+
+/* Subtle grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px, 96px 96px;
+  background-position: 0 0, 18px 22px;
+  opacity: 0.10;
+  mix-blend-mode: overlay;
+}
+
+/* Minima tone lock */
+.wrapper {
+  width: min(100% - 2 * var(--s-4), var(--measure));
+  margin: 0 auto;
+  padding: 0;
+}
+
+.site-header,
+.site-footer,
+.page-content {
+  background: transparent;
+  border: none;
+}
+
+.page-content { padding: 0; }
+
+.site-header {
+  padding-top: var(--s-6);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.site-footer {
+  margin: var(--s-6) auto var(--s-6);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line-soft);
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+/* Links */
+a {
+  color: var(--ink-primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(242, 242, 238, 0.22);
+  transition: border-color 120ms ease, color 120ms ease;
+}
+
+a:hover {
+  color: rgba(242, 242, 238, 0.98);
+  border-bottom-color: rgba(162, 98, 62, 0.55);
+}
+
+/* Logo/title scale locked to your reference images */
+.site-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 44px);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink-primary);
+  margin: 0 0 var(--s-2);
+}
+
+/* Tagline */
+.site-description,
+.site-tagline {
+  margin: 0;
+  color: var(--ink-muted);
+  max-width: 62ch;
+}
+
+/* Nav */
+.site-nav {
+  margin-top: var(--s-4);
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--line-soft);
+}
+
+.site-nav .page-link {
+  border-bottom: none;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+  margin-right: 16px;
+}
+
+.site-nav .page-link:hover { color: var(--ink-primary); }
+
+/* Typography */
+h1, h2, h3 {
+  margin: 0 0 var(--s-3);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.05;
+  color: var(--ink-primary);
+}
+
+.page-heading, h1 {
+  font-size: clamp(44px, 6.5vw, 82px);
+  margin-top: var(--s-6);
+}
+
+h2 {
+  font-size: clamp(26px, 3.2vw, 38px);
+  margin-top: var(--s-6);
+}
+
+h3 {
+  font-size: 20px;
+  margin-top: var(--s-4);
+  letter-spacing: 0.04em;
+}
+
+p {
+  margin: 0 0 var(--s-3);
+  color: var(--ink-primary);
+  max-width: var(--measure);
+}
+
+.lede {
+  font-size: 18px;
+  color: var(--ink-muted);
+  max-width: 62ch;
+}
+
+.small {
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--line-strong);
+  margin: var(--s-6) 0;
+}
+
+/* Blockquotes */
+blockquote {
+  margin: var(--s-4) 0;
+  padding: var(--s-3) var(--s-4);
+  border-left: 2px solid rgba(162, 98, 62, 0.55);
+  background: var(--bg-panel);
+  border-radius: var(--r);
+}
+
+blockquote p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(242, 242, 238, 0.86);
+}
+
+/* Lists */
+ul, ol {
+  margin: 0 0 var(--s-3);
+  padding-left: 1.25rem;
+}
+
+li { margin: 0.35rem 0; color: var(--ink-muted); }
+li strong { color: var(--ink-primary); }
+
+/* Archive cards */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-4) 0 0;
+}
+
+.post-list li {
+  margin: 0 0 var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid rgba(242, 242, 238, 0.10);
+  border-radius: var(--r);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.post-meta {
+  display: block;
+  margin-top: 6px;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; }
+}
