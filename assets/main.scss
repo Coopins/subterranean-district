@@ -63,7 +63,40 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Links */
+/* ------------------------------ */
+/* Minima compatibility layer     */
+/* ------------------------------ */
+
+/* Minima uses .wrapper for layout width */
+.wrapper {
+  width: min(100% - 2 * var(--s-4), var(--measure));
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Minima containers */
+.site-header,
+.site-footer,
+.page-content {
+  border: none;
+  background: transparent;
+}
+
+/* Minima default header border; we’ll control rules ourselves */
+.site-header {
+  padding-top: var(--s-5);
+}
+
+/* Minima’s footer can be a bit bright */
+.site-footer {
+  margin: var(--s-5) auto var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--rule);
+  color: var(--faint);
+  font-size: 13px;
+}
+
+/* Minima often sets link colors; ensure ours wins */
 a {
   color: var(--ink);
   text-decoration: none;
@@ -88,7 +121,7 @@ footer {
   margin: 0 auto;
 }
 
-/* Site header (if you have one) */
+/* Site header (Minima uses .site-title too; we’ll style it) */
 .site-title {
   font-family: var(--font-display);
   letter-spacing: 0.06em;
@@ -97,30 +130,41 @@ footer {
   margin: var(--s-5) 0 var(--s-2);
   text-transform: uppercase;
 }
-.site-tagline {
+.site-tagline,
+.site-description {
   margin: 0 0 var(--s-5);
   color: var(--muted);
   max-width: 62ch;
 }
 
 /* Nav (keep labels short: Manifesto / Archive / About) */
-nav {
+nav,
+.site-nav {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
   padding: var(--s-2) 0 var(--s-4);
   border-bottom: 1px solid var(--rule);
 }
-nav a {
+
+/* Minima uses .page-link for nav links */
+nav a,
+.site-nav a,
+.site-nav .page-link {
   border-bottom: none;
   color: var(--muted);
   letter-spacing: 0.02em;
 }
-nav a:hover {
+nav a:hover,
+.site-nav a:hover,
+.site-nav .page-link:hover {
   color: var(--ink);
 }
 
-/* Typography hierarchy */
+/* ------------------------------ */
+/* Typography hierarchy            */
+/* ------------------------------ */
+
 h1,
 h2,
 h3 {
@@ -131,10 +175,14 @@ h3 {
   line-height: 1.05;
 }
 
+/* IMPORTANT: Minima prints page title as h1.page-heading.
+   We’ll keep it strong but ensure it doesn’t compete with masthead later. */
+.page-heading,
 h1 {
   font-size: clamp(44px, 6.6vw, 84px);
   margin-top: var(--s-5);
 }
+
 h2 {
   font-size: clamp(26px, 3.4vw, 38px);
   margin-top: var(--s-5);
@@ -209,4 +257,33 @@ pre {
   border-radius: var(--r);
   padding: var(--s-3);
   overflow: auto;
+}
+code {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.15em 0.35em;
+  border-radius: 8px;
+  color: rgba(244, 244, 250, 0.9);
+}
+
+/* ------------------------------ */
+/* Archive / lists                 */
+/* ------------------------------ */
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-4) 0 0;
+}
+.post-list li {
+  margin: 0 0 var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid rgba(244, 244, 250, 0.10);
+  border-radius: var(--r);
+  background: rgba(255, 255, 255, 0.02);
+}
+.post-meta {
+  display: block;
+  margin-top: 6px;
+  color: var(--faint);
+  font-size: 13px;
 }
