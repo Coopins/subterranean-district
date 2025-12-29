@@ -1,46 +1,114 @@
 ---
 layout: page
-title: Brand Manifesto
+title: Manifesto
 permalink: /manifesto/
 ---
 
-SUBTERRANEAN DISTRICT — BRAND MANIFESTO
+<p class="small">A declaration of purpose, identity, and vision</p>
 
-A declaration of purpose, identity, and vision
+<p class="lede">
+Subterranean District was born in the spaces most people ignore — the alleys, basements, late-night corridors, and creative margins where culture is actually made.
+</p>
 
-Subterranean District was born in the spaces most people ignore — the alleys, basements, late‑night corridors, and creative margins where culture is actually made. We exist to uncover the pulse beneath the city’s surface: the artists working in silence, the scenes growing in the shadows, the thinkers rewriting identity, and the everyday people whose stories hold the weight of truth.
+<p>
+We exist to uncover the pulse beneath the city’s surface: the artists working in silence, the scenes growing in the shadows, the thinkers rewriting identity, and the everyday people whose stories hold the weight of truth.
+</p>
 
-We believe the underground isn’t a fringe.
-It’s the foundation.
+<hr>
+
+## What We Believe
+
+<p>
+The underground is not a fringe.
+<br>
+It is the foundation.
+<br>
 The spark.
+<br>
 The blueprint for tomorrow.
+</p>
 
+<p>
 We are here to document it — honestly, fearlessly, and with intention.
+</p>
 
-Subterranean District blends grit with futurism, rawness with vision, documentary realism with atmospheric creativity. Our work lives at the intersection of what IS and what’s EMERGING. We pay attention to the subcultures designing the future, the micro‑communities building meaning, the hybrid identities shaping modern life.
+<hr>
 
+## Our Lens
+
+<p>
+Subterranean District blends grit with futurism, rawness with vision, documentary realism with atmospheric creativity.
+</p>
+
+<p>
+Our work lives at the intersection of what <strong>is</strong> and what is <strong>emerging</strong>.
+We pay attention to the subcultures designing the future, the micro-communities building meaning, and the hybrid identities shaping modern life.
+</p>
+
+<p>
 We elevate the people who rarely get center stage but shape culture the most.
+</p>
 
-We are photographers, writers, observers, archivists, storytellers, mythmakers — capturing the real, the surreal, the psychological, the aesthetic, and the human. Our tone is raw when it needs truth, poetic when it seeks depth, investigative when finding answers, and cinematic when honoring experience.
+<hr>
 
+## How We Work
+
+<p>
+We are photographers, writers, observers, archivists, storytellers, and mythmakers.
+</p>
+
+<p>
+Our tone is raw when it demands truth, poetic when it seeks depth, investigative when finding answers, and cinematic when honoring lived experience.
+</p>
+
+<p>
 This is a platform for the bold, the curious, the overlooked, and the visionary.
+</p>
 
-We stand against the sanitized, the performative, the hollow, the trend‑chasing, the corporate‑filtered. Subterranean District refuses to exploit communities or imitate authenticity — we document what is already there, alive and beating in the world’s hidden quarters.
+<hr>
 
-Our work is guided by curiosity, integrity, creativity, respect, community, and depth.
-We move with grit.
-We create with courage.
-We tell stories with purpose.
+## What We Refuse
 
-We are building a living archive — a hybrid of culture journalism, visual art, design, philosophy, and underground storytelling. A space where people feel seen, inspired, and connected to something larger than themselves.
+<p>
+We stand against the sanitized, the performative, the hollow, the trend-chasing, and the corporate-filtered.
+</p>
 
-We reveal what others overlook.
-We amplify what deserves to be heard.
-We map the layers of identity, culture, and city life that exist just out of sight.
+<p>
+We refuse to exploit communities or imitate authenticity. We document what is already there — alive and beating in the world’s hidden quarters.
+</p>
 
-Subterranean District is the story beneath the story —
-the world beneath the world —
-the district beneath the surface.
+<hr>
 
+## What We’re Building
+
+<p>
+We are building a living archive — a hybrid of culture journalism, visual art, design, philosophy, and underground storytelling.
+</p>
+
+<p>
+A space where people feel seen, inspired, and connected to something larger than themselves.
+</p>
+
+<hr>
+
+<blockquote>
+  <p>
+    We reveal what others overlook.
+    <br>
+    We amplify what deserves to be heard.
+    <br>
+    We map the layers of identity, culture, and city life that exist just out of sight.
+  </p>
+</blockquote>
+
+<p class="lede">
+The story beneath the story.
+<br>
+The world beneath the world.
+<br>
+The district beneath the surface.
+</p>
+
+<p class="small">
 Revealing what’s real, raw, and underground — the stories the world needs but rarely sees.
-
+</p>
