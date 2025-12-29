@@ -4,15 +4,28 @@ title: Archive
 permalink: /archive/
 ---
 
-<p class="sd-archive-intro">
-  A growing record of stories, images, and observations from beneath the surface.
+<p class="lede">
+A growing record of stories, images, and observations from beneath the surface.
 </p>
 
-<ul class="sd-archive-list">
+{% if site.posts and site.posts.size > 0 %}
+<ul class="post-list">
   {% for post in site.posts %}
-    <li class="sd-archive-item">
-      <span class="sd-archive-year">{{ post.date | date: "%Y" }}</span>
-      <span class="sd-archive-title"><a href="{{ post.url }}">{{ post.title }}</a></span>
-    </li>
+  <li>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <span class="post-meta">
+      {{ post.date | date: "%B %-d, %Y" }}
+      {% if post.categories and post.categories.size > 0 %}
+        · {{ post.categories | join: ", " }}
+      {% endif %}
+    </span>
+
+    {% if post.excerpt %}
+      <p class="small">{{ post.excerpt | strip_html | truncate: 200 }}</p>
+    {% endif %}
+  </li>
   {% endfor %}
 </ul>
+{% else %}
+<p class="small">The archive is quiet for now. Soon.</p>
+{% endif %}
