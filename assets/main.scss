@@ -1,60 +1,44 @@
 ---
 ---
 
-/* =========================================================
-   Subterranean District
-   Material System: Concrete · Soot · Bone · Rust
-   ========================================================= */
-
-/* Fonts */
+/* =========================
+   Fonts
+========================= */
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap");
 
-/* -------------------------
-   Root Variables
--------------------------- */
+/* =========================
+   Root variables
+========================= */
 :root {
-  /* Surfaces */
-  --bg-primary: #0e0f11;        /* soot */
-  --bg-secondary: #141517;      /* charcoal */
-  --bg-panel: rgba(255,255,255,0.03);
+  /* Core palette */
+  --bg: #0d0f10;
+  --bg-soft: #121416;
+  --ink: rgba(244, 244, 240, 0.96);
+  --muted: rgba(244, 244, 240, 0.70);
+  --faint: rgba(244, 244, 240, 0.48);
+  --rule: rgba(244, 244, 240, 0.12);
 
-  /* Text */
-  --ink-primary: rgba(242,242,238,0.94);  /* bone */
-  --ink-muted: rgba(242,242,238,0.64);
-  --ink-faint: rgba(242,242,238,0.42);
+  /* Warm subterranean accent */
+  --accent: rgba(168, 120, 84, 0.9);
+  --accent-soft: rgba(168, 120, 84, 0.25);
 
-  /* Lines */
-  --line-strong: rgba(242,242,238,0.18);
-  --line-soft: rgba(242,242,238,0.08);
-
-  /* Oxidation accent (rare) */
-  --rust: rgba(162, 98, 62, 0.85);
-  --rust-soft: rgba(162, 98, 62, 0.18);
-
-  /* Typography */
+  /* Type */
   --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  --font-display: "Bebas Neue", "Oswald", "Anton", "Impact", sans-serif;
+  --font-display: "Bebas Neue", "Oswald", "Anton", sans-serif;
   --font-serif: "DM Serif Display", Georgia, serif;
 
+  /* Layout */
+  --max-width: 1100px;
+  --gutter: clamp(24px, 6vw, 72px);
+
   /* Scale */
-  --text: 16px;
-  --leading: 1.7;
-  --measure: 70ch;
-
-  /* Spacing */
-  --s1: 8px;
-  --s2: 12px;
-  --s3: 18px;
-  --s4: 28px;
-  --s5: 44px;
-  --s6: 64px;
-
-  --radius: 14px;
+  --text-base: 17px;
+  --leading: 1.75;
 }
 
-/* -------------------------
-   Reset / Base
--------------------------- */
+/* =========================
+   Reset / base
+========================= */
 *,
 *::before,
 *::after {
@@ -68,204 +52,142 @@ body {
 
 body {
   margin: 0;
+  background:
+    radial-gradient(1200px 800px at 15% 80%, rgba(168,120,84,0.18), transparent 55%),
+    radial-gradient(900px 700px at 85% 15%, rgba(255,255,255,0.05), transparent 60%),
+    var(--bg);
+  color: var(--ink);
   font-family: var(--font-body);
-  font-size: var(--text);
+  font-size: var(--text-base);
   line-height: var(--leading);
   letter-spacing: 0.01em;
-  color: var(--ink-primary);
-
-  background:
-    radial-gradient(1200px 800px at 70% 20%, rgba(255,255,255,0.06), transparent 60%),
-    radial-gradient(900px 700px at 15% 85%, var(--rust-soft), transparent 65%),
-    var(--bg-primary);
-
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle grain */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 64px 64px, 96px 96px;
-  background-position: 0 0, 22px 28px;
-  opacity: 0.10;
-  mix-blend-mode: overlay;
-}
-
-/* -------------------------
-   Layout Container
--------------------------- */
-.wrapper {
-  width: min(100% - 2 * var(--s4), var(--measure));
+/* =========================
+   Layout alignment fix
+========================= */
+.site-header,
+.page-content,
+.site-footer {
+  max-width: var(--max-width);
   margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
 }
 
-/* -------------------------
-   Header / Nav
--------------------------- */
-.site-header {
-  padding: var(--s6) 0 var(--s4);
-  border-bottom: 1px solid var(--line-soft);
-}
-
+/* =========================
+   Header
+========================= */
 .site-title {
-  font-family: var(--font-display);
-  font-size: clamp(36px, 4vw, 44px);
+  font-family: var(--font-serif);
+  font-size: 20px;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1;
-  color: var(--ink-primary);
-  margin: 0 0 var(--s2);
-}
-
-.site-nav {
-  margin-top: var(--s3);
+  text-transform: lowercase;
+  color: var(--ink);
 }
 
 .site-nav a {
-  margin-right: 16px;
-  color: var(--ink-muted);
-  text-decoration: none;
-  border-bottom: none;
-  letter-spacing: 0.04em;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .site-nav a:hover {
-  color: var(--ink-primary);
+  color: var(--ink);
 }
 
-/* -------------------------
-   Typography
--------------------------- */
-h1,
-h2,
-h3 {
-  font-family: var(--font-display);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  line-height: 1.05;
-  color: var(--ink-primary);
-}
+/* =========================
+   HERO / TYPOGRAPHY
+========================= */
 
+/* TRUE H1 — replaces the old slogan headline */
 h1 {
-  font-size: clamp(44px, 6.5vw, 82px);
-  margin: var(--s6) 0 var(--s3);
+  font-family: var(--font-display);
+  font-size: clamp(56px, 7vw, 96px);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin: 64px 0 24px;
 }
 
+/* Section headers */
 h2 {
-  font-size: clamp(26px, 3.2vw, 38px);
-  margin: var(--s6) 0 var(--s3);
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 72px 0 16px;
 }
 
-h3 {
-  font-size: 20px;
-  margin-top: var(--s4);
-}
-
+/* Body copy */
 p {
-  margin: 0 0 var(--s3);
-  max-width: var(--measure);
+  max-width: 68ch;
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 17.5px;
 }
 
-.lede {
-  font-size: 18px;
-  color: var(--ink-muted);
-  max-width: 62ch;
-}
-
+/* Small eyebrow text */
+.lede,
 .small {
-  font-size: 13px;
-  color: var(--ink-faint);
+  color: var(--faint);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
-/* -------------------------
-   Links
--------------------------- */
-a {
-  color: var(--ink-primary);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(242,242,238,0.22);
-}
-
-a:hover {
-  border-bottom-color: rgba(162,98,62,0.55);
-}
-
-/* -------------------------
-   Dividers
--------------------------- */
+/* =========================
+   Rules / separators
+========================= */
 hr {
   border: none;
-  border-top: 1px solid var(--line-strong);
-  margin: var(--s6) 0;
+  border-top: 1px solid var(--rule);
+  margin: 64px 0;
 }
 
-/* -------------------------
-   Blockquotes
--------------------------- */
+/* =========================
+   Blockquotes (Manifesto)
+========================= */
 blockquote {
-  margin: var(--s4) 0;
-  padding: var(--s3) var(--s4);
-  border-left: 2px solid rgba(162,98,62,0.55);
-  background: var(--bg-panel);
-  border-radius: var(--radius);
+  margin: 32px 0;
+  padding: 28px 32px;
+  background: linear-gradient(
+    135deg,
+    rgba(168,120,84,0.18),
+    rgba(255,255,255,0.04)
+  );
+  border-radius: 14px;
+  border-left: 3px solid var(--accent);
 }
 
 blockquote p {
-  margin: 0;
   font-family: var(--font-serif);
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.6;
-  color: rgba(242,242,238,0.86);
+  color: var(--ink);
 }
 
-/* -------------------------
-   Archive / Lists
--------------------------- */
-.post-list {
-  list-style: none;
-  padding: 0;
-  margin-top: var(--s4);
+/* =========================
+   Links
+========================= */
+a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(244,244,240,0.3);
 }
 
-.post-list li {
-  margin-bottom: var(--s4);
-  padding: var(--s3) var(--s4);
-  border: 1px solid rgba(242,242,238,0.10);
-  border-radius: var(--radius);
-  background: rgba(255,255,255,0.02);
+a:hover {
+  border-bottom-color: var(--accent);
 }
 
-.post-meta {
-  display: block;
-  margin-top: 6px;
-  font-size: 13px;
-  color: var(--ink-faint);
-}
-
-/* -------------------------
+/* =========================
    Footer
--------------------------- */
+========================= */
 .site-footer {
-  margin: var(--s6) 0;
-  padding-top: var(--s4);
-  border-top: 1px solid var(--line-soft);
-  font-size: 13px;
-  color: var(--ink-faint);
-}
-
-/* -------------------------
-   Accessibility
--------------------------- */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
+  margin-top: 96px;
+  padding-bottom: 48px;
+  color: var(--faint);
+  font-size: 14px;
 }
