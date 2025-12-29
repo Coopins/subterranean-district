@@ -4,7 +4,9 @@ theme: minima
 markdown: kramdown
 permalink: /:categories/:title/
 
-# Tell Minima we want a quieter header (we'll take control of hierarchy)
+# Important for project sites (repo pages)
+baseurl: "/subterranean-district"
+
 minima:
   skin: dark
 
