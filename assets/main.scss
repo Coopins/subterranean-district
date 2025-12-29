@@ -1,332 +1,212 @@
----
----
+/* assets/main.scss */
 
-@import "minima";
-
-/* =========================================================
-   Subterranean District
-   Editorial Atmosphere (Flatter + Slightly More Blue)
-   Palette: Cobalt Blue × Burgundy (no pure black base)
-========================================================= */
+/* Fonts (Google) */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap");
 
 :root {
-  /* ink */
-  --ink: #efece6;
-  --ink-2: rgba(239, 236, 230, 0.78);
-  --ink-3: rgba(239, 236, 230, 0.55);
+  /* Material palette (no pure black/white) */
+  --bg: #0f1216;
+  --panel: rgba(255, 255, 255, 0.03);
+  --ink: rgba(244, 244, 250, 0.92);
+  --muted: rgba(244, 244, 250, 0.62);
+  --faint: rgba(244, 244, 250, 0.42);
+  --rule: rgba(244, 244, 250, 0.10);
+  --shadow: rgba(0, 0, 0, 0.55);
 
-  /* colors */
-  --cobalt: #2f66ff;
-  --burgundy: #7a1b2d;
+  /* Accent (rust / oxidation — use sparingly) */
+  --accent: rgba(178, 112, 74, 0.85);
+  --accent-soft: rgba(178, 112, 74, 0.18);
 
-  --line: rgba(239, 236, 230, 0.14);
+  /* Type */
+  --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --font-display: "Bebas Neue", "Oswald", "Anton", "Impact", sans-serif;
+  --font-serif: "DM Serif Display", Georgia, "Times New Roman", serif;
+
+  /* Scale */
+  --text: 16px;
+  --leading: 1.7;
+  --measure: 70ch;
+
+  /* Spacing */
+  --s-1: 8px;
+  --s-2: 12px;
+  --s-3: 18px;
+  --s-4: 28px;
+  --s-5: 44px;
+
+  /* Radius */
+  --r: 14px;
 }
 
-/* =========================================================
-   Background — Flatter blend (less vignette) + more cobalt
-========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html,
 body {
-  background:
-    /* cobalt field (stronger, wider, flatter) */
-    radial-gradient(
-      1400px 900px at 14% 18%,
-      rgba(47,102,255,0.38),
-      rgba(47,102,255,0.20) 44%,
-      transparent 72%
-    ),
-    /* burgundy field (balanced, not overpowering) */
-    radial-gradient(
-      1300px 980px at 86% 20%,
-      rgba(122,27,45,0.30),
-      rgba(122,27,45,0.16) 46%,
-      transparent 74%
-    ),
-    /* base paper-ink blend (no black; deep indigo/wine neutrals) */
-    linear-gradient(
-      135deg,
-      #20263a 0%,
-      #1f263b 34%,
-      #2a1e2b 68%,
-      #2b1f2b 100%
-    );
+  height: 100%;
 }
-
-/* =========================================================
-   Base typography
-========================================================= */
 
 body {
+  margin: 0;
+  background: radial-gradient(1200px 900px at 60% 15%, rgba(255, 255, 255, 0.06), transparent 55%),
+    radial-gradient(900px 700px at 10% 85%, rgba(178, 112, 74, 0.10), transparent 55%),
+    var(--bg);
   color: var(--ink);
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: 18px;
-  line-height: 1.78;
+  font-family: var(--font-body);
+  font-size: var(--text);
+  line-height: var(--leading);
   letter-spacing: 0.01em;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Flatter texture: remove heavy vignette, keep subtle film grain */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    /* very subtle lift so the center reads like paper */
-    radial-gradient(
-      1200px 900px at 50% 38%,
-      rgba(255,255,255,0.045),
-      transparent 72%
-    ),
-    /* minimal scan texture */
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.010),
-      rgba(255,255,255,0.010) 1px,
-      transparent 1px,
-      transparent 6px
-    );
-  opacity: 0.22;
-  mix-blend-mode: overlay;
-}
-
-/* =========================================================
-   Layout
-========================================================= */
-
-.site-header,
-.site-footer,
-.page-content,
-.wrapper,
-.post-content {
-  background: transparent;
-}
-
-.wrapper {
-  max-width: 920px;
-}
-
-.page-content {
-  padding: 64px 0 96px;
-}
-
-.post-content,
-.page-content .wrapper {
-  max-width: 760px;
-}
-
-/* =========================================================
-   Header
-========================================================= */
-
-.site-header {
-  border: none;
-  padding-top: 12px;
-  padding-bottom: 14px;
-  position: relative;
-}
-
-/* subtle cobalt → burgundy rule */
-.site-header::after {
-  content: "";
-  display: block;
-  height: 1px;
-  margin-top: 12px;
-  background: linear-gradient(
-    90deg,
-    rgba(47,102,255,0),
-    rgba(47,102,255,0.48),
-    rgba(122,27,45,0.40),
-    rgba(122,27,45,0)
-  );
-}
-
-.site-title,
-.site-title:visited {
+/* Links */
+a {
   color: var(--ink);
-  letter-spacing: 0.11em;
-  text-transform: lowercase;
-  font-weight: 400;
-  border: none;
-}
-
-.site-nav .page-link,
-.site-nav .page-link:visited {
-  color: var(--ink-2);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 11px;
-  border: none;
-  margin-left: 16px;
-}
-
-.site-nav .page-link:hover {
-  color: #ffffff;
-}
-
-/* =========================================================
-   Links — unified, no visited blue/purple
-========================================================= */
-
-a,
-a:visited {
-  color: var(--ink-2);
   text-decoration: none;
-  border-bottom: 1px solid rgba(239,236,230,0.28);
+  border-bottom: 1px solid rgba(244, 244, 250, 0.22);
+  transition: border-color 120ms ease, color 120ms ease;
+}
+a:hover {
+  color: rgba(244, 244, 250, 0.98);
+  border-bottom-color: rgba(178, 112, 74, 0.55);
 }
 
-a:hover,
-a:focus {
-  color: #ffffff;
-  border-bottom-color: rgba(47,102,255,0.78);
+/* Layout helpers (works even without layouts) */
+.container {
+  width: min(100% - 2 * var(--s-4), var(--measure));
+  margin: 0 auto;
 }
 
-a:active {
-  border-bottom-color: rgba(122,27,45,0.78);
+header,
+main,
+footer {
+  width: min(100% - 2 * var(--s-4), var(--measure));
+  margin: 0 auto;
 }
 
-/* =========================================================
-   Typography hierarchy
-========================================================= */
-
-.page-title,
-.post-title {
-  color: #ffffff;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  line-height: 1.12;
-  margin-top: 6px;
-}
-
-.page-title { font-size: 38px; }
-.post-title { font-size: 42px; }
-
-.post-meta {
-  color: var(--ink-3);
-  font-size: 12px;
-  letter-spacing: 0.09em;
+/* Site header (if you have one) */
+.site-title {
+  font-family: var(--font-display);
+  letter-spacing: 0.06em;
+  font-size: clamp(28px, 3.8vw, 44px);
+  line-height: 1;
+  margin: var(--s-5) 0 var(--s-2);
   text-transform: uppercase;
+}
+.site-tagline {
+  margin: 0 0 var(--s-5);
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+/* Nav (keep labels short: Manifesto / Archive / About) */
+nav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: var(--s-2) 0 var(--s-4);
+  border-bottom: 1px solid var(--rule);
+}
+nav a {
+  border-bottom: none;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+nav a:hover {
+  color: var(--ink);
+}
+
+/* Typography hierarchy */
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--s-3);
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.05;
+}
+
+h1 {
+  font-size: clamp(44px, 6.6vw, 84px);
+  margin-top: var(--s-5);
+}
+h2 {
+  font-size: clamp(26px, 3.4vw, 38px);
+  margin-top: var(--s-5);
+}
+h3 {
+  font-size: 20px;
+  margin-top: var(--s-4);
+  letter-spacing: 0.04em;
 }
 
 p {
-  margin-bottom: 22px;
-}
-
-h2 {
-  color: #ffffff;
-  font-weight: 400;
-  margin-top: 46px;
-  margin-bottom: 14px;
-}
-
-h3 {
-  color: rgba(255,255,255,0.92);
-  font-weight: 400;
-  margin-top: 34px;
-  margin-bottom: 10px;
-}
-
-/* =========================================================
-   Homepage hero
-========================================================= */
-
-.sd-hero {
-  margin-top: 14px;
-}
-
-.sd-kicker {
-  color: var(--ink-3);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-size: 11px;
-  margin-bottom: 14px;
-}
-
-.sd-tagline {
-  font-size: 20px;
-  color: var(--ink-2);
-  max-width: 56ch;
-}
-
-/* =========================================================
-   Buttons
-========================================================= */
-
-.sd-links {
-  margin-top: 26px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.sd-link,
-.sd-link:visited {
-  display: inline-block;
-  padding: 10px 14px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(239,236,230,0.18);
+  margin: 0 0 var(--s-3);
   color: var(--ink);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-size: 11px;
-  border-bottom: none;
+  max-width: var(--measure);
 }
 
-.sd-link:hover,
-.sd-link:focus {
-  color: #ffffff;
-  border-color: rgba(47,102,255,0.65);
-  box-shadow: 0 0 0 3px rgba(47,102,255,0.18);
+.lede {
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 62ch;
 }
 
-.sd-link:active {
-  border-color: rgba(122,27,45,0.65);
-  box-shadow: 0 0 0 3px rgba(122,27,45,0.18);
+.small {
+  font-size: 13px;
+  color: var(--faint);
 }
 
-/* primary (burgundy) */
-.sd-link--primary,
-.sd-link--primary:visited {
-  border-color: rgba(122,27,45,0.65);
-}
-
-.sd-link--primary:hover {
-  box-shadow: 0 0 0 3px rgba(122,27,45,0.22);
-}
-
-/* =========================================================
-   Archive
-========================================================= */
-
-.sd-archive-item {
-  padding: 14px 0;
-  border-top: 1px solid var(--line);
-}
-
-.sd-archive-item:last-child {
-  border-bottom: 1px solid var(--line);
-}
-
-.sd-archive-year {
-  color: var(--ink-3);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-size: 11px;
-}
-
-/* =========================================================
-   Footer
-========================================================= */
-
-.site-footer {
+/* “Editorial” elements */
+hr {
   border: none;
-  color: var(--ink-3);
+  border-top: 1px solid var(--rule);
+  margin: var(--s-5) 0;
 }
 
-.site-footer a {
-  color: var(--ink-2);
-  border-bottom: 1px solid rgba(239,236,230,0.28);
+blockquote {
+  margin: var(--s-4) 0;
+  padding: var(--s-3) var(--s-4);
+  border-left: 2px solid rgba(178, 112, 74, 0.55);
+  background: var(--panel);
+  border-radius: var(--r);
+}
+blockquote p {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(244, 244, 250, 0.86);
+}
+
+ul,
+ol {
+  margin: 0 0 var(--s-3);
+  padding-left: 1.25rem;
+  color: var(--ink);
+}
+li {
+  margin: 0.35rem 0;
+  color: var(--muted);
+}
+li strong {
+  color: var(--ink);
+}
+
+/* Code (if you include snippets in posts) */
+code,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+pre {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(244, 244, 250, 0.10);
+  border-radius: var(--r);
+  padding: var(--s-3);
+  overflow: auto;
 }
