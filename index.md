@@ -6,7 +6,7 @@ description: The district beneath the surface.
 
 <p class="small">A living archive</p>
 
-# The district beneath the surface.
+# Subterranean District
 
 <p class="lede">
 Culture, identity, city life, and underground storytelling — documented honestly, with intention.
