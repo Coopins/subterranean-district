@@ -12,67 +12,77 @@ description: The district beneath the surface.
 Culture, identity, city life, and underground storytelling — documented honestly, with intention.
 </p>
 
-<p>
-<a href="/manifesto/">Manifesto</a> &nbsp;·&nbsp;
-<a href="/archive/">Archive</a> &nbsp;·&nbsp;
+<p class="small">
+<a href="/manifesto/">Manifesto</a> ·
+<a href="/archive/">Archive</a> ·
 <a href="/about/">About</a>
 </p>
 
 <hr>
 
-## Manifesto
+## Orientation
 
-<blockquote>
-  <p>
-    Subterranean District was born in the spaces most people ignore — the alleys, basements, late-night corridors,
-    and the quiet interiors of ordinary lives. We document what survives beneath the surface.
-  </p>
-</blockquote>
+<p>
+Subterranean District exists to observe what often goes unnoticed — the spaces between movements, the people outside the spotlight, the ideas forming quietly before they surface.
+</p>
 
-<p class="small">
-  <a href="/manifesto/">Read the full manifesto →</a>
+<p>
+This is a place for attention. For patience. For work that values depth over immediacy.
 </p>
 
 <hr>
 
-## Latest
+## From the Manifesto
+
+<blockquote>
+  <p>
+    The underground is not a fringe.
+    <br>
+    It is the foundation.
+    <br>
+    The blueprint for what comes next.
+  </p>
+</blockquote>
+
+<p class="small">
+<a href="/manifesto/">Read the full manifesto →</a>
+</p>
+
+<hr>
+
+## Latest Entries
 
 {% if site.posts and site.posts.size > 0 %}
 <ul class="post-list">
-  {% for post in site.posts limit: 5 %}
+  {% for post in site.posts limit: 3 %}
   <li>
     <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     <span class="post-meta">
       {{ post.date | date: "%B %-d, %Y" }}
-      {% if post.categories and post.categories.size > 0 %}
-        · {{ post.categories | join: ", " }}
-      {% endif %}
     </span>
 
     {% if post.excerpt %}
-      <p class="small">{{ post.excerpt | strip_html | truncate: 180 }}</p>
+      <p class="small">{{ post.excerpt | strip_html | truncate: 160 }}</p>
     {% endif %}
   </li>
   {% endfor %}
 </ul>
 
 <p class="small">
-  <a href="/archive/">Open the archive →</a>
+<a href="/archive/">Enter the archive →</a>
 </p>
 {% else %}
 <p class="small">
-  The archive is quiet for now. Soon.
+The archive is quiet for now. Soon.
 </p>
 {% endif %}
 
 <hr>
 
-## About
-
 <p class="lede">
-Subterranean District is a publication devoted to the overlooked — the intimate, the urban, the hidden.
+The story beneath the story.
 </p>
 
 <p class="small">
-  <a href="/about/">Read more →</a>
+A publication for what survives below the surface.
 </p>
