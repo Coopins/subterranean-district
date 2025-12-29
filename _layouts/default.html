@@ -1,19 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0d0f10" />
 
-    <title>{{ page.title | default: site.title }}</title>
+    <title>
+      {% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}
+    </title>
 
-    <!-- Minima base -->
-    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+    {% if page.description %}
+      <meta name="description" content="{{ page.description }}" />
+    {% else %}
+      <meta name="description" content="{{ site.description }}" />
+    {% endif %}
 
-    <!-- YOUR custom styles -->
-    <link rel="stylesheet" href="{{ '/assets/main.scss' | relative_url }}">
+    <!-- Minima (optional, but fine to keep) -->
+    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}" />
   </head>
 
   <body>
-    {{ content }}
+    <header class="sd-shell sd-header">
+      <div class="sd-inner">
+        <a class="sd-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+
+        <nav class="sd-nav" aria-label="Primary">
+          {% for path in site.header_pages %}
+            {% assign p = site.pages | where: "path", path | first %}
+            {% if p %}
+              <a class="sd-navlink" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+            {% endif %}
+          {% endfor %}
+        </nav>
+      </div>
+      <div class="sd-rule" aria-hidden="true"></div>
+    </header>
+
+    <main class="sd-shell sd-main">
+      <div class="sd-inner">
+        {{ content }}
+      </div>
+    </main>
+
+    <footer class="sd-shell sd-footer">
+      <div class="sd-inner">
+        <div class="sd-footmeta">
+          © <span id="y"></span> {{ site.title }} · {{ site.description }}
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
