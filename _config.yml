@@ -4,6 +4,10 @@ theme: minima
 markdown: kramdown
 permalink: /:categories/:title/
 
+# Tell Minima we want a quieter header (we'll take control of hierarchy)
+minima:
+  skin: dark
+
 header_pages:
   - manifesto.md
   - archive.md
