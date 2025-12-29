@@ -1,3 +1,6 @@
+---
+---
+
 /* assets/main.scss */
 /* Subterranean District — Tone Locked (Concrete / Soot / Bone / Rust) */
 
@@ -66,7 +69,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Concrete light + oxidation trace */
   background:
     radial-gradient(1200px 800px at 70% 20%, var(--concrete-light), transparent 60%),
     radial-gradient(900px 700px at 15% 85%, var(--rust-soft), transparent 65%),
@@ -75,7 +77,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Subtle grain (not grid, not glossy) */
+/* Subtle grain */
 body::before {
   content: "";
   position: fixed;
@@ -90,10 +92,7 @@ body::before {
   mix-blend-mode: overlay;
 }
 
-/* ------------------------------ */
-/* Minima containment (Tone Lock) */
-/* ------------------------------ */
-
+/* Tone lock for Minima */
 .wrapper {
   width: min(100% - 2 * var(--s-4), var(--measure));
   margin: 0 auto;
@@ -111,14 +110,12 @@ body::before {
   padding: 0;
 }
 
-/* Header */
 .site-header {
   padding-top: var(--s-6);
   padding-bottom: var(--s-4);
   border-bottom: 1px solid var(--line-soft);
 }
 
-/* Footer */
 .site-footer {
   margin: var(--s-6) auto var(--s-6);
   padding-top: var(--s-4);
@@ -127,10 +124,7 @@ body::before {
   font-size: 13px;
 }
 
-/* ------------------------------ */
-/* Links                          */
-/* ------------------------------ */
-
+/* Links */
 a {
   color: var(--ink-primary);
   text-decoration: none;
@@ -143,11 +137,7 @@ a:hover {
   border-bottom-color: rgba(162, 98, 62, 0.55);
 }
 
-/* ------------------------------ */
-/* Masthead + Nav                 */
-/* ------------------------------ */
-
-/* Logo/title scale locked to reference imagery */
+/* Logo/title */
 .site-title {
   font-family: var(--font-display);
   font-size: clamp(36px, 4vw, 44px);
@@ -184,10 +174,7 @@ a:hover {
   color: var(--ink-primary);
 }
 
-/* ------------------------------ */
-/* Typography                     */
-/* ------------------------------ */
-
+/* Headings */
 h1,
 h2,
 h3 {
@@ -199,7 +186,6 @@ h3 {
   color: var(--ink-primary);
 }
 
-/* Minima page title */
 .page-heading,
 h1 {
   font-size: clamp(44px, 6.5vw, 82px);
@@ -234,14 +220,13 @@ p {
   color: var(--ink-faint);
 }
 
-/* separators */
 hr {
   border: none;
   border-top: 1px solid var(--line-strong);
   margin: var(--s-6) 0;
 }
 
-/* Quotes (serif lives here) */
+/* Blockquotes */
 blockquote {
   margin: var(--s-4) 0;
   padding: var(--s-3) var(--s-4);
@@ -274,31 +259,7 @@ li strong {
   color: var(--ink-primary);
 }
 
-/* Code */
-code,
-pre {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-}
-
-pre {
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(242, 242, 238, 0.10);
-  border-radius: var(--r);
-  padding: var(--s-3);
-  overflow: auto;
-}
-
-code {
-  background: rgba(255, 255, 255, 0.06);
-  padding: 0.15em 0.35em;
-  border-radius: 8px;
-  color: rgba(242, 242, 238, 0.92);
-}
-
-/* ------------------------------ */
-/* Archive cards                  */
-/* ------------------------------ */
-
+/* Archive cards */
 .post-list {
   list-style: none;
   padding: 0;
@@ -319,10 +280,6 @@ code {
   color: var(--ink-faint);
   font-size: 13px;
 }
-
-/* ------------------------------ */
-/* Safety rails                   */
-/* ------------------------------ */
 
 @media (prefers-reduced-motion: reduce) {
   * {
