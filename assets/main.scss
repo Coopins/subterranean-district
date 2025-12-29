@@ -1,28 +1,31 @@
 /* assets/main.scss */
+/* Subterranean District — Tone Locked */
 
-/* Fonts (Google) */
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap");
 
 :root {
-  /* Material palette (no pure black/white) */
+  /* Atmosphere (no pure black/white) */
   --bg: #0f1216;
+  --bg2: rgba(255, 255, 255, 0.04);
   --panel: rgba(255, 255, 255, 0.03);
+
   --ink: rgba(244, 244, 250, 0.92);
   --muted: rgba(244, 244, 250, 0.62);
   --faint: rgba(244, 244, 250, 0.42);
-  --rule: rgba(244, 244, 250, 0.10);
-  --shadow: rgba(0, 0, 0, 0.55);
 
-  /* Accent (rust / oxidation — use sparingly) */
+  --rule: rgba(244, 244, 250, 0.10);
+  --rule2: rgba(244, 244, 250, 0.06);
+
+  /* Accent (oxidation) — rare */
   --accent: rgba(178, 112, 74, 0.85);
-  --accent-soft: rgba(178, 112, 74, 0.18);
+  --accent-soft: rgba(178, 112, 74, 0.16);
 
   /* Type */
   --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --font-display: "Bebas Neue", "Oswald", "Anton", "Impact", sans-serif;
   --font-serif: "DM Serif Display", Georgia, "Times New Roman", serif;
 
-  /* Scale */
+  /* Rhythm */
   --text: 16px;
   --leading: 1.7;
   --measure: 70ch;
@@ -33,6 +36,7 @@
   --s-3: 18px;
   --s-4: 28px;
   --s-5: 44px;
+  --s-6: 64px;
 
   /* Radius */
   --r: 14px;
@@ -51,9 +55,6 @@ body {
 
 body {
   margin: 0;
-  background: radial-gradient(1200px 900px at 60% 15%, rgba(255, 255, 255, 0.06), transparent 55%),
-    radial-gradient(900px 700px at 10% 85%, rgba(178, 112, 74, 0.10), transparent 55%),
-    var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--text);
@@ -61,46 +62,77 @@ body {
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* quiet, worn light */
+  background:
+    radial-gradient(1200px 900px at 60% 15%, rgba(255, 255, 255, 0.06), transparent 55%),
+    radial-gradient(900px 700px at 10% 85%, var(--accent-soft), transparent 55%),
+    var(--bg);
+
+  overflow-x: hidden;
+}
+
+/* Subtle “district grain” (not a grid; not glossy) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 64px 64px, 96px 96px;
+  background-position: 0 0, 18px 22px;
+  opacity: 0.10;
+  mix-blend-mode: overlay;
 }
 
 /* ------------------------------ */
-/* Minima compatibility layer     */
+/* Minima containment (Tone Lock) */
 /* ------------------------------ */
 
-/* Minima uses .wrapper for layout width */
 .wrapper {
   width: min(100% - 2 * var(--s-4), var(--measure));
   margin: 0 auto;
   padding: 0;
 }
 
-/* Minima containers */
+/* keep seams soft */
 .site-header,
 .site-footer,
 .page-content {
-  border: none;
   background: transparent;
+  border: none;
 }
 
-/* Minima default header border; we’ll control rules ourselves */
+.page-content {
+  padding: 0;
+}
+
+/* Header spacing (quiet authority) */
 .site-header {
-  padding-top: var(--s-5);
+  padding-top: var(--s-6);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--rule);
 }
 
-/* Minima’s footer can be a bit bright */
+/* Footer (non-repetitive, calm) */
 .site-footer {
-  margin: var(--s-5) auto var(--s-5);
+  margin: var(--s-6) auto var(--s-6);
   padding-top: var(--s-4);
   border-top: 1px solid var(--rule);
   color: var(--faint);
   font-size: 13px;
 }
 
-/* Minima often sets link colors; ensure ours wins */
+/* ------------------------------ */
+/* Links                          */
+/* ------------------------------ */
+
 a {
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid rgba(244, 244, 250, 0.22);
+  border-bottom: 1px solid rgba(244, 244, 250, 0.20);
   transition: border-color 120ms ease, color 120ms ease;
 }
 a:hover {
@@ -108,61 +140,45 @@ a:hover {
   border-bottom-color: rgba(178, 112, 74, 0.55);
 }
 
-/* Layout helpers (works even without layouts) */
-.container {
-  width: min(100% - 2 * var(--s-4), var(--measure));
-  margin: 0 auto;
-}
+/* ------------------------------ */
+/* Masthead + Nav                  */
+/* ------------------------------ */
 
-header,
-main,
-footer {
-  width: min(100% - 2 * var(--s-4), var(--measure));
-  margin: 0 auto;
-}
-
-/* Site header (Minima uses .site-title too; we’ll style it) */
 .site-title {
   font-family: var(--font-display);
   letter-spacing: 0.06em;
   font-size: clamp(28px, 3.8vw, 44px);
   line-height: 1;
-  margin: var(--s-5) 0 var(--s-2);
+  margin: 0 0 var(--s-2);
   text-transform: uppercase;
 }
-.site-tagline,
-.site-description {
-  margin: 0 0 var(--s-5);
+
+/* Minima uses .site-description in some versions */
+.site-description,
+.site-tagline {
+  margin: 0;
   color: var(--muted);
   max-width: 62ch;
 }
 
-/* Nav (keep labels short: Manifesto / Archive / About) */
-nav,
 .site-nav {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding: var(--s-2) 0 var(--s-4);
-  border-bottom: 1px solid var(--rule);
+  margin-top: var(--s-4);
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--rule2);
 }
 
-/* Minima uses .page-link for nav links */
-nav a,
-.site-nav a,
 .site-nav .page-link {
   border-bottom: none;
   color: var(--muted);
   letter-spacing: 0.02em;
+  margin-right: 16px;
 }
-nav a:hover,
-.site-nav a:hover,
 .site-nav .page-link:hover {
   color: var(--ink);
 }
 
 /* ------------------------------ */
-/* Typography hierarchy            */
+/* Typography                      */
 /* ------------------------------ */
 
 h1,
@@ -175,18 +191,18 @@ h3 {
   line-height: 1.05;
 }
 
-/* IMPORTANT: Minima prints page title as h1.page-heading.
-   We’ll keep it strong but ensure it doesn’t compete with masthead later. */
+/* Page title printed by Minima: .page-heading */
 .page-heading,
 h1 {
   font-size: clamp(44px, 6.6vw, 84px);
-  margin-top: var(--s-5);
+  margin-top: var(--s-6);
 }
 
 h2 {
   font-size: clamp(26px, 3.4vw, 38px);
-  margin-top: var(--s-5);
+  margin-top: var(--s-6);
 }
+
 h3 {
   font-size: 20px;
   margin-top: var(--s-4);
@@ -210,13 +226,14 @@ p {
   color: var(--faint);
 }
 
-/* “Editorial” elements */
+/* separators */
 hr {
   border: none;
   border-top: 1px solid var(--rule);
-  margin: var(--s-5) 0;
+  margin: var(--s-6) 0;
 }
 
+/* Quotes = the only place serif gets loud */
 blockquote {
   margin: var(--s-4) 0;
   padding: var(--s-3) var(--s-4);
@@ -232,11 +249,11 @@ blockquote p {
   color: rgba(244, 244, 250, 0.86);
 }
 
+/* Lists */
 ul,
 ol {
   margin: 0 0 var(--s-3);
   padding-left: 1.25rem;
-  color: var(--ink);
 }
 li {
   margin: 0.35rem 0;
@@ -246,7 +263,7 @@ li strong {
   color: var(--ink);
 }
 
-/* Code (if you include snippets in posts) */
+/* Code */
 code,
 pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -266,7 +283,7 @@ code {
 }
 
 /* ------------------------------ */
-/* Archive / lists                 */
+/* Archive cards                   */
 /* ------------------------------ */
 
 .post-list {
@@ -274,6 +291,7 @@ code {
   padding: 0;
   margin: var(--s-4) 0 0;
 }
+
 .post-list li {
   margin: 0 0 var(--s-4);
   padding: var(--s-3) var(--s-4);
@@ -281,9 +299,34 @@ code {
   border-radius: var(--r);
   background: rgba(255, 255, 255, 0.02);
 }
+
 .post-meta {
   display: block;
   margin-top: 6px;
   color: var(--faint);
   font-size: 13px;
+}
+
+/* ------------------------------ */
+/* Safety rails (anti-overdesign) */
+/* ------------------------------ */
+
+/* No bright buttons. If future you adds .btn somewhere, keep it quiet. */
+.btn,
+button,
+input[type="submit"] {
+  font: inherit;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(244, 244, 250, 0.14);
+  border-radius: 999px;
+  padding: 10px 14px;
+}
+
+/* Reduce motion if requested */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
 }
