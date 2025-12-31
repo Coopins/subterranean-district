@@ -15,8 +15,8 @@
       <meta name="description" content="{{ site.description }}" />
     {% endif %}
 
-    <!-- Minima (optional, but fine to keep) -->
-    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}" />
+    <!-- Cache-busted stylesheet -->
+    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}?v={{ site.time | date: '%s' }}" />
   </head>
 
   <body>
@@ -36,12 +36,6 @@
       <div class="sd-rule" aria-hidden="true"></div>
     </header>
 
-    <!--
-      MAIN UPDATE:
-      - Move sd-inner INSIDE each content section instead of wrapping the entire page content.
-      - This allows each major block to become a "section" with consistent dividers + blending.
-      - We wrap the rendered page content in a section hook so SCSS can smooth transitions.
-    -->
     <main class="sd-shell sd-main" id="content">
       <section class="sd-section sd-page">
         <div class="sd-inner">
