@@ -12,12 +12,6 @@ description: The district beneath the surface.
 Culture, identity, city life, and underground storytelling — documented honestly, with intention.
 </p>
 
-<p class="small">
-<a href="{{ '/manifesto/' | relative_url }}">Manifesto</a> ·
-<a href="{{ '/archive/' | relative_url }}">Archive</a> ·
-<a href="{{ '/about/' | relative_url }}">About</a>
-</p>
-
 ## Orientation
 
 Subterranean District exists to observe what often goes unnoticed — the spaces between movements, the people outside the spotlight, the ideas forming quietly before they surface.
