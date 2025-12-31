@@ -52,14 +52,12 @@ body {
   line-height: var(--leading);
   color: var(--ink);
 
-  /* One continuous background that does NOT "restart" per section */
   background: var(--bg);
   background-image:
     radial-gradient(1200px 800px at 16% 82%, var(--rustSoft), transparent 58%),
     radial-gradient(900px 700px at 82% 18%, rgba(255,255,255,0.05), transparent 60%),
     radial-gradient(1100px 800px at 50% 92%, rgba(70, 180, 160, 0.08), transparent 65%),
     linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.55) 100%);
-
   background-repeat: no-repeat;
   background-attachment: fixed;
 
@@ -85,25 +83,16 @@ body::before {
 }
 
 /* =========================================================
-   SECTION SEAM FIXES
-   - Keep sections transparent so the body background is continuous
-   - Add a soft divider between adjacent blocks
+   SECTION SYSTEM (used by updated index wrappers)
 ========================================================= */
-section,
-.section,
-.page-section {
-  background: transparent !important;
-}
-
-section + section,
-.section + .section,
-.page-section + .page-section {
+.sd-section {
   position: relative;
+  background: transparent;
+  padding: clamp(34px, 4.5vw, 64px) 0;
 }
 
-section + section::before,
-.section + .section::before,
-.page-section + .page-section::before {
+/* Soft divider between the wrapped sections (instead of <hr> bars) */
+.sd-section + .sd-section::before {
   content: "";
   position: absolute;
   left: 0;
@@ -119,26 +108,38 @@ section + section::before,
   opacity: 0.7;
 }
 
-/* Optional: a gentle fade overlay for the section that holds "FROM THE MANIFESTO"
-   (safe: only applies if your markup uses these hooks) */
-.from-manifesto,
-#from-the-manifesto,
-.sd-from-manifesto {
+/* Keep generic sections transparent too (safety net) */
+section,
+.section,
+.page-section {
+  background: transparent !important;
+}
+
+/* =========================================================
+   MANIFESTO BLEND (targets your new index section hooks)
+========================================================= */
+.sd-from-manifesto,
+#from-the-manifesto {
   position: relative;
 }
 
-.from-manifesto::after,
-#from-the-manifesto::after,
-.sd-from-manifesto::after {
+/* Gentle top fade so it blends into the previous section */
+.sd-from-manifesto::after,
+#from-the-manifesto::after {
   content: "";
   position: absolute;
-  inset: -28px 0 0 0;
+  left: 0;
+  right: 0;
+  top: -34px;
+  height: 90px;
   pointer-events: none;
   background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.28));
   opacity: 0.95;
 }
 
-/* Centering shell */
+/* =========================================================
+   Centering shell
+========================================================= */
 .sd-shell {
   width: 100%;
 }
@@ -207,7 +208,9 @@ section + section::before,
   padding: clamp(26px, 5vw, 56px) 0 64px;
 }
 
-/* Typography */
+/* =========================================================
+   Typography + Components
+========================================================= */
 h1 {
   font-family: var(--font-display);
   font-size: clamp(56px, 7vw, 96px);
@@ -222,7 +225,23 @@ h2 {
   font-size: clamp(22px, 3vw, 30px);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin: 56px 0 14px;
+  margin: 0 0 14px;
+}
+
+/* Text helpers used in index */
+.small {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--faint);
+  max-width: 72ch;
+}
+
+.lede {
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.65;
+  color: rgba(244,244,240,0.82);
+  margin: 0 0 18px;
+  max-width: 70ch;
 }
 
 p {
@@ -241,14 +260,15 @@ a:hover {
   border-bottom-color: rgba(168,120,84,0.65);
 }
 
+/* Keep <hr> available, but soften since sections now divide visually */
 hr {
   border: none;
-  border-top: 1px solid var(--rule);
-  margin: 48px 0;
+  border-top: 1px solid rgba(244,244,240,0.08);
+  margin: 40px 0;
 }
 
 blockquote {
-  margin: 26px 0;
+  margin: 22px 0;
   padding: 22px 26px;
   background: linear-gradient(135deg, rgba(168,120,84,0.18), rgba(255,255,255,0.04));
   border-radius: var(--r);
@@ -261,6 +281,30 @@ blockquote p {
   font-size: 19px;
   line-height: 1.6;
   color: rgba(244, 244, 240, 0.92);
+}
+
+/* Latest entries list */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-list li {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(244,244,240,0.10);
+}
+
+.post-list li:last-child {
+  border-bottom: none;
+}
+
+.post-meta {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: rgba(244,244,240,0.45);
 }
 
 /* Footer */
