@@ -309,6 +309,14 @@ blockquote p {
   color: rgba(244,244,240,0.45);
 }
 
+.sd-header .sd-brand {
+  font-family: var(--font-display) !important;
+  font-weight: 400;
+  letter-spacing: 0.08em; /* optional tweak */
+  text-transform: lowercase;
+}
+
+
 /* =========================================================
    FOOTER
 ========================================================= */
