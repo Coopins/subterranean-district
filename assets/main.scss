@@ -43,7 +43,6 @@ body {
 
 /* =========================================================
    GLOBAL BACKGROUND (continuous across sections)
-   Fixes harsh banding between Orientation + From the Manifesto
 ========================================================= */
 body {
   margin: 0;
@@ -83,7 +82,9 @@ body::before {
 }
 
 /* =========================================================
-   SECTION SYSTEM (used by updated index wrappers)
+   SECTION SYSTEM
+   - If you wrap content in .sd-section in any page, it will
+     get consistent rhythm + subtle dividers.
 ========================================================= */
 .sd-section {
   position: relative;
@@ -91,7 +92,6 @@ body::before {
   padding: clamp(34px, 4.5vw, 64px) 0;
 }
 
-/* Soft divider between the wrapped sections (instead of <hr> bars) */
 .sd-section + .sd-section::before {
   content: "";
   position: absolute;
@@ -108,7 +108,7 @@ body::before {
   opacity: 0.7;
 }
 
-/* Keep generic sections transparent too (safety net) */
+/* Safety net: never allow section wrappers to paint solid bands */
 section,
 .section,
 .page-section {
@@ -116,14 +116,13 @@ section,
 }
 
 /* =========================================================
-   MANIFESTO BLEND (targets your new index section hooks)
+   MANIFESTO BLEND
 ========================================================= */
 .sd-from-manifesto,
 #from-the-manifesto {
   position: relative;
 }
 
-/* Gentle top fade so it blends into the previous section */
 .sd-from-manifesto::after,
 #from-the-manifesto::after {
   content: "";
@@ -138,7 +137,7 @@ section,
 }
 
 /* =========================================================
-   Centering shell
+   CENTERING SHELL
 ========================================================= */
 .sd-shell {
   width: 100%;
@@ -151,7 +150,9 @@ section,
   padding-right: var(--padx);
 }
 
-/* Header */
+/* =========================================================
+   HEADER
+========================================================= */
 .sd-header {
   padding: clamp(18px, 3.5vw, 34px) 0 12px;
 }
@@ -203,13 +204,15 @@ section,
   border-color: rgba(255,255,255,0.10);
 }
 
-/* Main */
+/* =========================================================
+   MAIN
+========================================================= */
 .sd-main {
   padding: clamp(26px, 5vw, 56px) 0 64px;
 }
 
 /* =========================================================
-   Typography + Components
+   TYPOGRAPHY + COMPONENTS
 ========================================================= */
 h1 {
   font-family: var(--font-display);
@@ -228,20 +231,11 @@ h2 {
   margin: 0 0 14px;
 }
 
-/* Text helpers used in index */
-.small {
-  font-size: 13px;
-  letter-spacing: 0.02em;
-  color: var(--faint);
-  max-width: 72ch;
-}
-
-.lede {
-  font-size: clamp(18px, 2.2vw, 22px);
-  line-height: 1.65;
-  color: rgba(244,244,240,0.82);
-  margin: 0 0 18px;
-  max-width: 70ch;
+/* Homepage title should match the logo (serif + lowercase) */
+.sd-main h1 {
+  font-family: var(--font-serif);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
 }
 
 p {
@@ -260,7 +254,23 @@ a:hover {
   border-bottom-color: rgba(168,120,84,0.65);
 }
 
-/* Keep <hr> available, but soften since sections now divide visually */
+/* Text helpers used in index */
+.small {
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--faint);
+  max-width: 72ch;
+}
+
+.lede {
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.65;
+  color: rgba(244,244,240,0.82);
+  margin: 0 0 18px;
+  max-width: 70ch;
+}
+
+/* Keep <hr> available, but softened */
 hr {
   border: none;
   border-top: 1px solid rgba(244,244,240,0.08);
@@ -307,7 +317,9 @@ blockquote p {
   color: rgba(244,244,240,0.45);
 }
 
-/* Footer */
+/* =========================================================
+   FOOTER
+========================================================= */
 .sd-footer {
   padding: 26px 0 48px;
   border-top: 1px solid rgba(244,244,240,0.10);
