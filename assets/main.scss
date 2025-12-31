@@ -41,6 +41,10 @@ body {
   height: 100%;
 }
 
+/* =========================================================
+   GLOBAL BACKGROUND (continuous across sections)
+   Fixes harsh banding between Orientation + From the Manifesto
+========================================================= */
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -48,15 +52,22 @@ body {
   line-height: var(--leading);
   color: var(--ink);
 
-  background:
+  /* One continuous background that does NOT "restart" per section */
+  background: var(--bg);
+  background-image:
     radial-gradient(1200px 800px at 16% 82%, var(--rustSoft), transparent 58%),
     radial-gradient(900px 700px at 82% 18%, rgba(255,255,255,0.05), transparent 60%),
-    var(--bg);
+    radial-gradient(1100px 800px at 50% 92%, rgba(70, 180, 160, 0.08), transparent 65%),
+    linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.55) 100%);
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Subtle film/grid overlay to reduce visible banding */
 body::before {
   content: "";
   position: fixed;
@@ -64,11 +75,67 @@ body::before {
   pointer-events: none;
   background-image:
     radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 64px 64px, 96px 96px;
-  background-position: 0 0, 26px 32px;
+    radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    radial-gradient(1200px 800px at 50% 0%, rgba(255,255,255,0.03), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  background-size: 64px 64px, 96px 96px, auto, auto;
+  background-position: 0 0, 26px 32px, center, center;
   opacity: 0.10;
   mix-blend-mode: overlay;
+}
+
+/* =========================================================
+   SECTION SEAM FIXES
+   - Keep sections transparent so the body background is continuous
+   - Add a soft divider between adjacent blocks
+========================================================= */
+section,
+.section,
+.page-section {
+  background: transparent !important;
+}
+
+section + section,
+.section + .section,
+.page-section + .page-section {
+  position: relative;
+}
+
+section + section::before,
+.section + .section::before,
+.page-section + .page-section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(244,244,240,0.12),
+    transparent
+  );
+  opacity: 0.7;
+}
+
+/* Optional: a gentle fade overlay for the section that holds "FROM THE MANIFESTO"
+   (safe: only applies if your markup uses these hooks) */
+.from-manifesto,
+#from-the-manifesto,
+.sd-from-manifesto {
+  position: relative;
+}
+
+.from-manifesto::after,
+#from-the-manifesto::after,
+.sd-from-manifesto::after {
+  content: "";
+  position: absolute;
+  inset: -28px 0 0 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.28));
+  opacity: 0.95;
 }
 
 /* Centering shell */
