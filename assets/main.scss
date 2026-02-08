@@ -41,8 +41,12 @@ body {
   height: 100%;
 }
 
+html {
+  background: var(--bg);
+}
+
 /* =========================================================
-   GLOBAL BACKGROUND (continuous across sections)
+   GLOBAL BACKGROUND (fixed ambient + side "borders")
 ========================================================= */
 body {
   margin: 0;
@@ -51,33 +55,95 @@ body {
   line-height: var(--leading);
   color: var(--ink);
 
+  /* Base */
   background: var(--bg);
-  background-image:
-    radial-gradient(1200px 800px at 16% 82%, var(--rustSoft), transparent 58%),
-    radial-gradient(900px 700px at 82% 18%, rgba(255,255,255,0.05), transparent 60%),
-    radial-gradient(1100px 800px at 50% 92%, rgba(70, 180, 160, 0.08), transparent 65%),
-    linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.55) 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+
+  overflow-x: hidden;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle film/grid overlay to reduce visible banding */
+/* Ambient environment + subtle “walls” at left/right */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
+  z-index: -2;
   pointer-events: none;
+
+  /* Layer stack:
+     1) Rust + cool haze (keeps brand tone)
+     2) Center haze (readability)
+     3) Side walls (the "borders" you want)
+     4) Subtle vertical structure
+     5) Vignette
+  */
   background-image:
-    radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    radial-gradient(1200px 800px at 50% 0%, rgba(255,255,255,0.03), transparent 60%),
-    linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
-  background-size: 64px 64px, 96px 96px, auto, auto;
-  background-position: 0 0, 26px 32px, center, center;
-  opacity: 0.10;
+    radial-gradient(1200px 800px at 16% 82%, var(--rustSoft), transparent 58%),
+    radial-gradient(1100px 800px at 50% 92%, rgba(70, 180, 160, 0.07), transparent 65%),
+    radial-gradient(900px 700px at 82% 18%, rgba(255,255,255,0.05), transparent 60%),
+
+    radial-gradient(1200px 700px at 50% 35%,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.02) 35%,
+      rgba(0, 0, 0, 0.0) 60%),
+
+    linear-gradient(90deg,
+      rgba(0, 0, 0, 0.92) 0%,
+      rgba(0, 0, 0, 0.60) 12%,
+      rgba(0, 0, 0, 0.22) 28%,
+      rgba(0, 0, 0, 0.10) 50%,
+      rgba(0, 0, 0, 0.22) 72%,
+      rgba(0, 0, 0, 0.60) 88%,
+      rgba(0, 0, 0, 0.92) 100%),
+
+    repeating-linear-gradient(90deg,
+      rgba(255, 255, 255, 0.016) 0px,
+      rgba(255, 255, 255, 0.016) 1px,
+      rgba(0, 0, 0, 0.0) 14px,
+      rgba(0, 0, 0, 0.0) 40px),
+
+    radial-gradient(1200px 900px at 50% 50%,
+      rgba(0, 0, 0, 0.00) 0%,
+      rgba(0, 0, 0, 0.55) 70%,
+      rgba(0, 0, 0, 0.86) 100%),
+
+    linear-gradient(180deg,
+      rgba(0,0,0,0.00) 0%,
+      rgba(0,0,0,0.35) 55%,
+      rgba(0,0,0,0.55) 100%);
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/* Grain + “film” overlay (subtle, reduces banding) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.018) 0px,
+      rgba(255, 255, 255, 0.018) 1px,
+      rgba(0, 0, 0, 0.0) 3px,
+      rgba(0, 0, 0, 0.0) 6px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.012) 0px,
+      rgba(255, 255, 255, 0.012) 1px,
+      rgba(0, 0, 0, 0.0) 5px,
+      rgba(0, 0, 0, 0.0) 10px
+    );
+
+  opacity: 0.24;
   mix-blend-mode: overlay;
 }
 
@@ -166,7 +232,7 @@ section,
   margin-top: 14px;
 }
 
-/* ✅ Brand now matches the big title font (blue == red) */
+/* Brand now matches the big title font */
 .sd-brand {
   font-family: var(--font-display);
   font-size: 20px;
@@ -312,10 +378,9 @@ blockquote p {
 .sd-header .sd-brand {
   font-family: var(--font-display) !important;
   font-weight: 400;
-  letter-spacing: 0.08em; /* optional tweak */
+  letter-spacing: 0.08em;
   text-transform: lowercase;
 }
-
 
 /* =========================================================
    FOOTER
