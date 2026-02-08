@@ -1,4 +1,3 @@
-
 ---
 ---
 
@@ -7,12 +6,10 @@
 :root {
   --bg: #0b0c0d;
   --bg2: #121416;
-  --panel: rgba(255, 255, 255, 0.03);
 
   --ink: rgba(244, 244, 240, 0.94);
   --muted: rgba(244, 244, 240, 0.68);
   --faint: rgba(244, 244, 240, 0.46);
-
   --rule: rgba(244, 244, 240, 0.12);
 
   --rust: rgba(168, 120, 84, 0.90);
@@ -30,19 +27,11 @@
 
   --r: 16px;
 
-  /* =========================================================
-     BORDER IMAGE (put file here)
-     /assets/img/border-city.png
-  ========================================================= */
-  --border-img: url("img/border-city.png");
+  /* Project-safe absolute path (GitHub Pages project site) */
+  --border-img: url("/subterranean-district/assets/img/border-city.png");
 
-  /* How wide the “borders” are */
-  --border-w: clamp(180px, 22vw, 420px);
-
-  /* How strong the image is (keep subtle) */
-  --border-opacity: 0.28;
-
-  /* Blur amount for the border image */
+  --border-w: clamp(180px, 22vw, 440px);
+  --border-opacity: 0.26;
   --border-blur: 18px;
 }
 
@@ -61,18 +50,12 @@ html {
   background: var(--bg);
 }
 
-/* =========================================================
-   GLOBAL BACKGROUND
-   - Center stays black (scrolling content sits on top)
-   - Left/right borders use fixed, blurred image
-========================================================= */
 body {
   margin: 0;
   font-family: var(--font-body);
   font-size: var(--text);
   line-height: var(--leading);
   color: var(--ink);
-
   background: var(--bg);
   overflow-x: hidden;
 
@@ -80,109 +63,89 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* LEFT BORDER (fixed, blurred, subdued) */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: var(--border-w);
-  z-index: -2;
-  pointer-events: none;
+/* =========================================================
+   FIXED BACKGROUND BORDERS (LEFT + RIGHT)
+   - Image stays fixed while user scrolls
+   - Center stays clean/dark for readability
+========================================================= */
 
-  background-image: var(--border-img);
-  background-size: cover;
-  background-position: left center;
-  background-repeat: no-repeat;
-
-  filter: blur(var(--border-blur)) saturate(1.1) contrast(1.05);
-  opacity: var(--border-opacity);
-  transform: translateZ(0);
-
-  /* Fade toward center so it never fights the text */
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 70%,
-    rgba(0,0,0,0) 100%
-  );
-  mask-image: linear-gradient(
-    90deg,
-    rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 70%,
-    rgba(0,0,0,0) 100%
-  );
-}
-
-/* RIGHT BORDER (fixed, blurred, subdued) */
+body::before,
 body::after {
   content: "";
   position: fixed;
   top: 0;
   bottom: 0;
-  right: 0;
   width: var(--border-w);
   z-index: -2;
   pointer-events: none;
 
   background-image: var(--border-img);
   background-size: cover;
-  background-position: right center;
   background-repeat: no-repeat;
 
   filter: blur(var(--border-blur)) saturate(1.1) contrast(1.05);
   opacity: var(--border-opacity);
   transform: translateZ(0);
+}
+
+body::before {
+  left: 0;
+  background-position: left center;
+
+  /* Fade toward the center */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 72%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 72%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+body::after {
+  right: 0;
+  background-position: right center;
 
   -webkit-mask-image: linear-gradient(
     270deg,
     rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 70%,
+    rgba(0,0,0,1) 72%,
     rgba(0,0,0,0) 100%
   );
   mask-image: linear-gradient(
     270deg,
     rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 70%,
+    rgba(0,0,0,1) 72%,
     rgba(0,0,0,0) 100%
   );
 }
 
-/* A subtle global vignette + grain to unify everything */
-body > .sd-shell::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-
+/* Global vignette + grain (keeps it cinematic and hides banding) */
+body {
   background-image:
     radial-gradient(1200px 900px at 50% 50%,
-      rgba(0, 0, 0, 0.00) 0%,
-      rgba(0, 0, 0, 0.55) 70%,
-      rgba(0, 0, 0, 0.86) 100%),
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.018) 0px,
-      rgba(255, 255, 255, 0.018) 1px,
-      rgba(0, 0, 0, 0.0) 3px,
-      rgba(0, 0, 0, 0.0) 6px
-    );
-
-  opacity: 0.20;
-  mix-blend-mode: overlay;
+      rgba(0,0,0,0.00) 0%,
+      rgba(0,0,0,0.55) 70%,
+      rgba(0,0,0,0.88) 100%),
+    radial-gradient(1200px 800px at 16% 82%, var(--rustSoft), transparent 58%),
+    radial-gradient(1100px 800px at 50% 92%, rgba(70, 180, 160, 0.06), transparent 65%),
+    linear-gradient(180deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.55) 100%);
+  background-attachment: fixed;
 }
 
-/* Ensure content always stays above fixed border layers */
-main,
-header,
-footer,
-.sd-shell,
-.sd-section,
-.sd-inner {
+/* Film grain overlay */
+body > * {
   position: relative;
   z-index: 0;
+}
+
+body::selection {
+  background: rgba(168,120,84,0.35);
 }
 
 /* =========================================================
@@ -201,12 +164,7 @@ footer,
   right: 0;
   top: 0;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(244,244,240,0.12),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(244,244,240,0.12), transparent);
   opacity: 0.7;
 }
 
@@ -218,46 +176,17 @@ section,
 }
 
 /* =========================================================
-   MANIFESTO BLEND
-========================================================= */
-.sd-from-manifesto,
-#from-the-manifesto {
-  position: relative;
-}
-
-.sd-from-manifesto::after,
-#from-the-manifesto::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -34px;
-  height: 90px;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.28));
-  opacity: 0.95;
-}
-
-/* =========================================================
    CENTERING SHELL
 ========================================================= */
 .sd-shell {
   width: 100%;
 }
 
-/* Center column stays “clean black” (subtle lift for readability) */
 .sd-inner {
   max-width: var(--maxw);
   margin: 0 auto;
   padding-left: var(--padx);
   padding-right: var(--padx);
-}
-
-/* Optional: a faint center wash so the image never competes near edges of content */
-.sd-main,
-.sd-header,
-.sd-footer {
-  background: transparent;
 }
 
 /* =========================================================
@@ -269,16 +198,10 @@ section,
 
 .sd-rule {
   height: 1px;
-  background: linear-gradient(
-    to right,
-    rgba(244,244,240,0),
-    rgba(244,244,240,0.14),
-    rgba(244,244,240,0)
-  );
+  background: linear-gradient(to right, rgba(244,244,240,0), rgba(244,244,240,0.14), rgba(244,244,240,0));
   margin-top: 14px;
 }
 
-/* Brand now matches the big title font */
 .sd-brand {
   font-family: var(--font-display);
   font-size: 20px;
@@ -358,7 +281,6 @@ a:hover {
   border-bottom-color: rgba(168,120,84,0.65);
 }
 
-/* Text helpers used in index */
 .small {
   font-size: 13px;
   letter-spacing: 0.02em;
@@ -374,7 +296,6 @@ a:hover {
   max-width: 70ch;
 }
 
-/* Keep <hr> available, but softened */
 hr {
   border: none;
   border-top: 1px solid rgba(244,244,240,0.08);
@@ -397,7 +318,6 @@ blockquote p {
   color: rgba(244, 244, 240, 0.92);
 }
 
-/* Latest entries list */
 .post-list {
   list-style: none;
   padding: 0;
@@ -419,13 +339,6 @@ blockquote p {
   font-size: 12px;
   letter-spacing: 0.02em;
   color: rgba(244,244,240,0.45);
-}
-
-.sd-header .sd-brand {
-  font-family: var(--font-display) !important;
-  font-weight: 400;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
 }
 
 /* =========================================================
