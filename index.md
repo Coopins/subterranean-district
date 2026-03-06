@@ -8,7 +8,7 @@ description: The district beneath the surface.
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">A Living Archive</div>
-    <h1>Subterra<br/>nean<br/><em>District</em></h1>
+    <h1>Subterranean<br/><em>District</em></h1>
     <p class="hero-sub">
       Culture, identity, and city life documented from beneath the surface.
       The scenes that form before anyone is watching. The voices that exist
