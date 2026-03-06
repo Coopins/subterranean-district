@@ -1,14 +1,10 @@
 title: Subterranean District
 description: The district beneath the surface.
-theme: minima
 markdown: kramdown
 permalink: /:categories/:title/
 
 # Important for project sites (repo pages)
 baseurl: "/subterranean-district"
-
-minima:
-  skin: dark
 
 header_pages:
   - manifesto.md

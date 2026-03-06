@@ -8,24 +8,22 @@ permalink: /archive/
 A growing record of stories, images, and observations from beneath the surface.
 </p>
 
-{% if site.posts and site.posts.size > 0 %}
-<ul class="post-list">
+{% if site.posts.size > 0 %}
+<div class="archive-page-grid">
   {% for post in site.posts %}
-  <li>
-    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    <span class="post-meta">
-      {{ post.date | date: "%B %-d, %Y" }}
-      {% if post.categories and post.categories.size > 0 %}
-        · {{ post.categories | join: ", " }}
+  <a href="{{ post.url | relative_url }}" class="archive-row">
+    <div>
+      <div class="archive-row-title">{{ post.title }}</div>
+      {% if post.excerpt %}
+        <div class="archive-row-excerpt">{{ post.excerpt | strip_html | truncate: 180 }}</div>
       {% endif %}
-    </span>
-
-    {% if post.excerpt %}
-      <p class="small">{{ post.excerpt | strip_html | truncate: 200 }}</p>
-    {% endif %}
-  </li>
+    </div>
+    <div class="archive-row-meta">
+      {{ post.date | date: "%b %-d, %Y" }}{% if post.categories and post.categories.size > 0 %}<br/>{{ post.categories | join: ", " }}{% endif %}
+    </div>
+  </a>
   {% endfor %}
-</ul>
+</div>
 {% else %}
 <p class="small">The archive is quiet for now. Soon.</p>
 {% endif %}

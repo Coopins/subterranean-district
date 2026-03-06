@@ -1,59 +1,54 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#0d0f10" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d0c0b" />
 
-    <title>
-      {% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}
-    </title>
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
 
-    {% if page.description %}
-      <meta name="description" content="{{ page.description }}" />
-    {% else %}
-      <meta name="description" content="{{ site.description }}" />
-    {% endif %}
+  {% if page.description %}
+    <meta name="description" content="{{ page.description }}" />
+  {% else %}
+    <meta name="description" content="{{ site.description }}" />
+  {% endif %}
 
-    <!-- Cache-busted stylesheet -->
-    <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}?v={{ site.time | date: '%s' }}" />
-  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+</head>
+<body>
 
-  <body>
-    <header class="sd-shell sd-header">
-      <div class="sd-inner">
-        <a class="sd-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <!-- Decorative lines -->
+  <div class="deco-line"></div>
+  <div class="deco-line"></div>
 
-        <nav class="sd-nav" aria-label="Primary">
-          {% for path in site.header_pages %}
-            {% assign p = site.pages | where: "path", path | first %}
-            {% if p %}
-              <a class="sd-navlink" href="{{ p.url | relative_url }}">{{ p.title }}</a>
-            {% endif %}
-          {% endfor %}
-        </nav>
-      </div>
-      <div class="sd-rule" aria-hidden="true"></div>
-    </header>
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="{{ '/' | relative_url }}" class="nav-logo">{{ site.title }}</a>
+    <ul class="nav-links">
+      {% for path in site.header_pages %}
+        {% assign p = site.pages | where: "path", path | first %}
+        {% if p %}
+          <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </nav>
 
-    <main class="sd-shell sd-main" id="content">
-      <section class="sd-section sd-page">
-        <div class="sd-inner">
-          {{ content }}
-        </div>
-      </section>
-    </main>
+  {{ content }}
 
-    <footer class="sd-shell sd-footer">
-      <div class="sd-inner">
-        <div class="sd-footmeta">
-          © <span id="y"></span> {{ site.title }} · {{ site.description }}
-        </div>
-      </div>
-    </footer>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">{{ site.title }}</div>
+    <div class="footer-copy">
+      {{ site.description }}<br/>
+      &copy; <span id="yr"></span> {{ site.title }}
+    </div>
+  </footer>
 
-    <script>
-      document.getElementById("y").textContent = new Date().getFullYear();
-    </script>
-  </body>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+</body>
 </html>
